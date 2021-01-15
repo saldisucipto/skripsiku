@@ -54,8 +54,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'jabatan' => ['required'],
-            'telepon' => ['required', 'string'],
-            'jenis_kelamin' => ['required', 'integer'],
+            'telepon' => ['required'],
+            'jenis_kelamin' => ['required'],
         ]);
     }
 
@@ -67,6 +67,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // return response()->json($data);
+        // die;
         return User::create([
             'nama_lengkap' => $data['nama_lengkap'],
             'username' => $data['username'],

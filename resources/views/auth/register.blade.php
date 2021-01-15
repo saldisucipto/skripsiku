@@ -15,7 +15,7 @@
                             <label for="nama_lengkap" class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nama_lengkap" type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" name="nama_lengkap" value="{{ old('nama_lengkap') }}" required autocomplete="nama_lengkap" autofocus>
+                                <input id="nama_lengkap" type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" name="nama_lengkap" value="{{ old('nama_lengkap') }}" autocomplete="nama_lengkap" autofocus>
 
                                 @error('nama_lengkap')
                                     <span class="invalid-feedback" role="alert">
@@ -96,7 +96,7 @@
                             <label for="telepon" class="col-md-4 col-form-label text-md-right">{{ __('Telepon') }}</label>
 
                             <div class="col-md-4">
-                                <input id="telepon" type="tel" pattern="^\d{3}-\d{3}-\d{4}$" required class="form-control @error('telepon') is-invalid @enderror" name="telepon" value="{{ old('telepon') }}" autocomplete="telepon" autofocus>
+                                <input id="telepon" type="text" required class="form-control @error('telepon') is-invalid @enderror" name="telepon" value="{{ old('telepon') }}" autocomplete="telepon" autofocus>
 
                                 @error('telepon')
                                     <span class="invalid-feedback" role="alert">
@@ -111,10 +111,10 @@
 
                             <div class="col-md-6 pt-2">
                                 <label class="radio-inline">
-                                    <input type="radio" name="jenis_kelamin" id="jenis_kelamin1" value="laki-laki"> Laki - Laki
+                                    <input type="radio" name="jenis_kelamin" id="jenis_kelamin1" value="0"> Laki - Laki
                                   </label>
                                   <label class="radio-inline">
-                                    <input type="radio" name="jenis_kelamin" id="jenis_kelamin2" value="Perempuan"> Perempuan
+                                    <input type="radio" name="jenis_kelamin" id="jenis_kelamin2" value="1"> Perempuan
                                   </label>
                                 @error('jenis_kelamin')
                                     <span class="invalid-feedback" role="alert">
@@ -131,8 +131,6 @@
                                 </button>
                             </div>
                         </div>
-
-
                     </form>
                 </div>
             </div>
