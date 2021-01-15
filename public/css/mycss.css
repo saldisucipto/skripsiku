@@ -1,0 +1,6 @@
+/* Logo Styling */
+
+#wrapper>nav>div.brand a {
+    font-weight: bold;
+    font-size: 18px;
+}

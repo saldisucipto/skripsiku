@@ -11,7 +11,9 @@
 	<link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/vendor/linearicons/style.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/vendor/chartist/css/chartist-custom.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/chartist/css/chartist-custom.css')}}">
+	<link rel="stylesheet" href="{{asset('css/mycss.css')}}">
+
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="{{asset('assets/vendor/clorofiladmin/css/main.css')}}">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
