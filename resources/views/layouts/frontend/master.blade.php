@@ -13,7 +13,8 @@
     <link href="{{asset('assets/frontend/css/price-range.css')}}" rel="stylesheet">
     <link href="{{asset('assets/frontend/css/animate.css')}}" rel="stylesheet">
 	<link href="{{asset('assets/frontend/css/main.css')}}" rel="stylesheet">
-	<link href="{{asset('assets/frontend/css/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/frontend/css/responsive.css')}}" rel="stylesheet">
+	<link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.css')}}">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
