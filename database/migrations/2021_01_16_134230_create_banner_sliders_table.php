@@ -13,8 +13,12 @@ class CreateBannerSlidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('banner_sliders', function (Blueprint $table) {
+        Schema::create('banner_slider', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title_slider');
+            $table->text('deksripsi_slider');
+            $table->string('link_slider');
+            $table->string('image_slider');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateBannerSlidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('banner_sliders');
+        Schema::dropIfExists('banner_slider');
     }
 }
