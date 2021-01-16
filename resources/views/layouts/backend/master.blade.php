@@ -12,7 +12,9 @@
 	<link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/vendor/linearicons/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendor/chartist/css/chartist-custom.css')}}">
-	<link rel="stylesheet" href="{{asset('css/mycss.css')}}">
+    <link rel="stylesheet" href="{{asset('css/mycss.css')}}">
+    {{-- datatables css --}}
+    <link rel="stylesheet" href="{{asset('assets/vendor/datatables/datatables.css')}}">
 
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="{{asset('assets/vendor/clorofiladmin/css/main.css')}}">
@@ -35,7 +37,9 @@
 	<script src="{{asset('assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 	<script src="{{asset('assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js')}}"></script>
 	<script src="{{asset('assets/vendor/chartist/js/chartist.min.js')}}"></script>
-	<script src="{{asset('assets/vendor/clorofiladmin/scripts/klorofil-common.js')}}"></script>
+    <script src="{{asset('assets/vendor/clorofiladmin/scripts/klorofil-common.js')}}"></script>
+    <script src="{{asset('assets/vendor/datatables/datatables.js')}}"></script>
+
 	<script>
 	$(function() {
 		var data, options;
@@ -151,7 +155,9 @@
 		function getRandomInt(min, max) {
 			return Math.floor(Math.random() * (max - min + 1)) + min;
 		}
-
+	});
+    $(document).ready(function(){
+		$('.data').DataTable();
 	});
 	</script>
 </body>
