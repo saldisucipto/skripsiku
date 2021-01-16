@@ -10,7 +10,7 @@ class SliderBannerController extends Controller
     // index slider
     public function index(){
         $routeName = Route::getCurrentRoute()->uri();
-        return view('backend.index',[
+        return view('backend.slider-banner.index',[
             'routeName' => $routeName,
         ]);
     }
