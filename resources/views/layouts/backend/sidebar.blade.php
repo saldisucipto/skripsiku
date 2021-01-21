@@ -3,29 +3,21 @@
 
         <nav>
             <ul class="nav">
-                <li><a href="/home" class=" @if ($routeName === "home")
-                    active
-                    @endif"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-                <li><a href="/slider-banner" class=" @if ($routeName === "slider-banner")
-                    active
-                    @endif"><i class="lnr lnr-picture"></i> <span>Slider Banners</span></a></li>
-                <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
-                <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
-                <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
-                <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
-                <li>
-                    <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                    <div id="subPages" class="collapse ">
-                        <ul class="nav">
-                            <li><a href="page-profile.html" class="">Profile</a></li>
-                            <li><a href="page-login.html" class="">Login</a></li>
-                            <li><a href="page-lockscreen.html" class="">Lockscreen</a></li>
-                        </ul>
-                    </div>
+                <li><a href="/home" class=" @if ($routeName==='home' ) active @endif"><i class="lnr lnr-home"></i>
+                        <span>Dashboard</span></a></li>
+                <li><a href="/company-info" class=" @if ($routeName==='company-info' ) active @endif"><i class="lnr lnr-apartment"></i> <span>Company
+                            Info</span></a></li>
+                {{-- <li><a href="/navigasi" class=" @if ($routeName==='navigasi' ) active @endif"><i
+                            class="lnr lnr-map"></i> <span>Navigasi
+                            Website</span></a></li>
+                </li> --}}
+                <li><a href="/slider-banner" class=" @if ($routeName==='slider-banner' ) active @endif"><i class="lnr lnr-picture"></i> <span>Slider
+                            Banners</span></a></li>
                 </li>
-                <li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
-                <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
-                <li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
+                <li><a href="/content-management" class=" @if ($routeName==='content-management'
+                        ) active @endif"><i class="lnr lnr-cog"></i> <span>Content
+                            Managemnt</span></a></li>
+                </li>
             </ul>
         </nav>
     </div>

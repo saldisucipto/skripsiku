@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BannerSlider extends Model
+class CompanyInfo extends Model
 {
     // deklare table
-    protected $table = 'banner_slider';
+    protected $table = 'company_info';
 
     // guarded table
     protected $guarded = [];
