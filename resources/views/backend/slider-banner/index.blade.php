@@ -89,6 +89,16 @@
                                                                                         required>
                                                                                 </div>
                                                                             </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-4 col-form-label">Link
+                                                                                    Slider</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text" name="link_slider"
+                                                                                        class="form-control"
+                                                                                        value="{{ $item->link_slider }}"
+                                                                                        required>
+                                                                                </div>
+                                                                            </div>
 
                                                                             <div class="form-group row">
                                                                                 <label

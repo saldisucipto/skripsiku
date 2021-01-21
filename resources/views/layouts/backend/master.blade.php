@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="{{ asset('css/mycss.css') }}">
     {{-- datatables css --}}
     <link rel="stylesheet" href="{{ asset('assets/vendor/datatables/datatables.css') }}">
-
+    {{-- Sweat Alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/clorofiladmin/css/main.css') }}">
     <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
@@ -38,6 +39,8 @@
     <script src="{{ asset('assets/vendor/chartist/js/chartist.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/clorofiladmin/scripts/klorofil-common.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables/datatables.js') }}"></script>
+    <script src="{{ asset('js/myscript.js') }}"></script>
+
 
     <script>
         $(function() {

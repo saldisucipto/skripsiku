@@ -47,4 +47,46 @@ class SliderBannerController extends Controller
             'bannerSlider' => $bannerSlider,
         ]);
     }
+    function update(Request $update, $id = null){
+        if($update->isMethod('PUT')){
+            $data = $update->all();
+            $image = $update->file('images_slider');
+            if($image){
+                $hapusimagelama = BannerSlider::find($id);
+                $image_path = public_path("\slider\\") .$hapusimagelama->image_slider;
+                if(file_exists($image_path)) {
+                    @unlink($image_path);
+                }
+                $nama_image = time()."-".$image->getClientOriginalName();
+                $path = 'slider/';
+                $image->move($path, $nama_image);
+                $updateData = BannerSlider::find($id);
+                $updateData->title_slider = $data['title_slider'];
+                $updateData->deksripsi_slider = $data['description_slider'];
+                $updateData->link_slider = $data['link_slider'];
+                $updateData->image_slider = $nama_image;
+                $updateData->save();
+                return redirect()->back()->with('pesan_sukses', 'Berhasil Memperbharui Slider');
+            }else{
+                $updateData = BannerSlider::find($id);
+                $updateData->title_slider = $data['title_slider'];
+                $updateData->deksripsi_slider = $data['description_slider'];
+                $updateData->link_slider = $data['link_slider'];
+                $updateData->save();
+                return redirect()->back()->with('pesan_sukses', 'Berhasil Memperbharui Slider');
+            }
+
+        }else{
+            $deleteData = BannerSlider::find($id);
+            $image_path = public_path("\slider\\") .$deleteData->image_slider;
+            if(file_exists($image_path)) {
+                @unlink($image_path);
+                $deleteData->delete();
+            }
+            else{
+                $deleteData->delete();
+            }
+            return redirect()->back()->with('pesan_sukses', 'Berhasil Menghapus Slider');
+        }
+    }
 }

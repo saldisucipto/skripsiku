@@ -11,16 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'StaticController@welcome');
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    // Slider Start
     Route::match(['get', 'post'], '/slider-banner', 'SliderBannerController@index');
-
+    Route::match(['get', 'put'], '/slider-edit/{id}', 'SliderBannerController@update');
+    // Slider End
      // Company Info
      Route::get('/company-info', 'CompanyInfoController@index');
      Route::put('/edit-info/{id}', 'CompanyInfoController@edit');
