@@ -25,6 +25,7 @@
     <!-- ICONS -->
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/vendor/clorofiladmin/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="/company-info/image/{{ $companyInfo->logo2 }}">
+
 </head>
 
 <body>

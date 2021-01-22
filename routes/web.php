@@ -21,8 +21,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::match(['get', 'post'], '/slider-banner', 'SliderBannerController@index');
     Route::match(['get', 'put'], '/slider-edit/{id}', 'SliderBannerController@update');
     // Slider End
-     // Company Info
-     Route::get('/company-info', 'CompanyInfoController@index');
-     Route::put('/edit-info/{id}', 'CompanyInfoController@edit');
-     // End Company Infoi
+    // Company Info
+    Route::get('/company-info', 'CompanyInfoController@index');
+    Route::put('/edit-info/{id}', 'CompanyInfoController@edit');
+    // End Company Info
+    // Start Slider
+    Route::match(['get', 'post'], '/navigasi', 'NavigasiController@index');
+    // End Slider
 });
