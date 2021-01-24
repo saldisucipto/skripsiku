@@ -14,6 +14,6 @@ class Navigasi extends Model
 
     // deklare realtions
     public function parent(){
-        return $this->belongsTo('App\ParentNavigasi');
+        return $this->belongsTo('App\ParentNavigasi', 'id_parent');
     }
 }
