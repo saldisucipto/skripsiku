@@ -17,7 +17,7 @@ class StaticController extends Controller
         $companyInfo = CompanyInfo::get()->first();
         $slider = BannerSlider::get()->all();
         $navigasi = Navigasi::with('parent')->get();
-        $parentNav = ParentNavigasi::with('navigasi')->get();
+        $parentNav = ParentNavigasi::with('navigasi')->get()->all();
         return view('welcome', [
             'routeName' => $routeName,
             'companyInfo' => $companyInfo,

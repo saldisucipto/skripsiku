@@ -54,9 +54,20 @@
                         <ul class="nav navbar-nav collapse navbar-collapse">
                             <li><a href="/" class=" @if ($routeName==='/' ) active @endif">Home</a></li>
                             @foreach ($parentNav as $item)
-                                <li><a href="{{ $item->link }}" class="    @if ($routeName==$item->link) active @endif">{{ $item->title }}</a></li>
+                                @if (count($item->navigasi) > 0)
+                                    <li class="dropdown"><a href="{{ $item->link }}" class="
+                                             @if ($routeName==$item->link) active
+                                            @endif">{{ $item->title }}<i class="fa fa-angle-down"></i></a>
+                                        <ul role="menu" class="sub-menu">
+                                            @foreach ($item->navigasi as $submenu)
+                                                <li><a href="{{ $submenu->link }}">{{ $submenu->title }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li><a href="{{ $item->link }}" class="   @if ($routeName==$item->link) active @endif">{{ $item->title }}</a></li>
+                                @endif
                             @endforeach
-
                         </ul>
                     </div>
                 </div>

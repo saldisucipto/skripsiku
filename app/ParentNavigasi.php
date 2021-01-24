@@ -14,6 +14,6 @@ class ParentNavigasi extends Model
 
     // Relationship one to many
     public function navigasi(){
-        return $this->hasMany('App\Navigasi', 'id');
+        return $this->hasMany('App\Navigasi', 'id_parent');
     }
 }
