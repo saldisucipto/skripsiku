@@ -29,7 +29,7 @@
                                     <h3 class="panel-title">Parent Navigasi</h3>
                                     <p class="panel-subtitle">Parent Navigasi Controller</p>
                                     <br>
-                                    <a href="#" class="btn btn-sm btn-primary">Create New Parent Navigasi</a>
+                                    <a href="#" data-toggle="modal" data-target="#createParentNav" class="btn btn-sm btn-primary">Create New Parent Navigasi</a>
                                 </div>
                                 <div class="panel-body">
                                     <table id="dataNavigasi" class="table table-striped table-bordered data">
@@ -41,16 +41,51 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($parentNav as $item)
                                             <tr>
-                                                <td>data</td>
-                                                <td>data</td>
-                                                <td class="text-center"><a href="#" class="btn btn-sm btn-warning"
-                                                        data-toggle="modal" data-target="#modalEdit"><i
+                                                <td>{{$item->title}}</td>
+                                                <td>{{$item->link}}</td>
+                                                <td class="text-center"><a href="#" class="btn btn-xs btn-warning"
+                                                        data-toggle="modal" data-target="#editParentNav"><i
                                                             class="fa fa-eye"></i>
                                                         Edit</a>|<a href="#" onclick="deleteSlider()"
-                                                        class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>
+                                                        class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>
                                                         Delete</a></td>
                                             </tr>
+                                            <div class="modal fade" id="editParentNav" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="editParentNav"><strong>Create Parent Navigasi</strong></h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="/navigasi-parent" method="POST" enctype="multipart/form-data">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label">Nama Navigasi</label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="text" name="title" value="{{$item->title}}" class="form-control" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label">Link Navigasi</label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="text" name="link" value="{{$item->link}}"  class="form-control" required>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Create New</button>
+                                                        </div>
+                                                        </form>
+                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                
+                                            @endforeach
                                 </div>
                             </div>
                             </tbody>
@@ -64,7 +99,7 @@
                             <h3 class="panel-title">Navigasi</h3>
                             <p class="panel-subtitle">Panel Navigasi Controller</p>
                             <br>
-                            <a href="#" class="btn btn-sm btn-primary">Create New Navigasi</a>
+                            <a href="#" data-target="#createNav" data-toggle="modal" class="btn btn-sm btn-primary">Create New Navigasi</a>
                         </div>
                         <div class="panel-body">
                             <div class="panel-body">
@@ -78,16 +113,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>data</td>
-                                            <td>data</td>
-                                            <td>data</td>
-                                            <td class="text-center"><a href="#" class="btn btn-sm btn-warning"
-                                                    data-toggle="modal" data-target="#modalEdit"><i class="fa fa-eye"></i>
-                                                    Edit</a>|<a href="#" onclick="deleteSlider()"
-                                                    class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>
-                                                    Delete</a></td>
-                                        </tr>
+                                      @foreach ($nav as $item)
+                                      <tr>
+                                        <td>{{$item->title}}</td>
+                                        <td>{{$item->link}}</td>
+                                        <td>{{$item->parent->title}}</td>
+                                        <td class="text-center"><a href="#" class="btn btn-xs btn-warning"
+                                                data-toggle="modal" data-target="#modalEdit"><i class="fa fa-eye"></i>
+                                                Edit</a>|<a href="#" onclick="deleteSlider()"
+                                                class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>
+                                                Delete</a></td>
+                                    </tr>
+                                      @endforeach
                             </div>
                         </div>
                     </div>
@@ -104,40 +141,21 @@
     {{-- @include('layouts.backend.footer') --}}
     {{-- End Footer --}}
     </div>
-    {{--
-    <!-- Modal -->
-    <div class="modal fade" id="modalCreateNew" tabindex="-1" role="dialog" aria-hidden="true">
+    
+    <!-- Modal Create Parent Nav-->
+    <div class="modal fade" id="createParentNav" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createModalTitle"><strong>CREATE NEW SLIDER BANNER</strong></h5>
+                    <h5 class="modal-title" id="createModalTitle"><strong>Create Parent Navigasi</strong></h5>
                 </div>
                 <div class="modal-body">
-                    <form action="/slider-banner" method="POST" enctype="multipart/form-data">
+                    <form action="/navigasi-parent" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Title Slider</label>
+                            <label class="col-sm-4 col-form-label">Nama Parent Navigasi</label>
                             <div class="col-sm-8">
-                                <input type="text" name="title_slider" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Link Slider</label>
-                            <div class="col-sm-8">
-                                <input type="text" name="link_slider" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Decription Slider</label>
-                            <div class="col-sm-8">
-                                <textarea name="description_slider" class="form-control" cols="30" rows="5"
-                                    required></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Images Slider</label>
-                            <div class="col-sm-8">
-                                <input type="file" class="form-control" name="images_slider" required id="images_slider">
+                                <input type="text" name="title" class="form-control" required>
                             </div>
                         </div>
                 </div>
@@ -149,5 +167,43 @@
 
             </div>
         </div>
-    </div> --}}
+    </div>
+    {{-- Modal create Navigasi --}}
+    <div class="modal fade" id="createNav" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="createModalTitle"><strong>Create Navigasi</strong></h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/navigasi" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Nama Navigasi</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="title" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Under Parent Navigasi</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="id_parent">
+                                    <option disabled selected aria-readonly="true"><i class="fa fa-trash"></i>Pilih Parent Navigasi</option>
+                                    @foreach ($parentNav as $item)
+                                    <option value="{{$item->id}}">{{$item->title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create New</button>
+                </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
 @endsection

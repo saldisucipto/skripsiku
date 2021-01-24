@@ -26,6 +26,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/edit-info/{id}', 'CompanyInfoController@edit');
     // End Company Info
     // Start Slider
-    Route::match(['get', 'post'], '/navigasi', 'NavigasiController@index');
+        // parent nav
+        Route::match(['get', 'post'], '/navigasi', 'NavigasiController@index');
+        Route::post('/navigasi-parent', 'NavigasiController@craetaParentNav');
+        // end parent nav
+        // navigasi
+        Route::post('/navigasi', 'NavigasiController@createNav');
+        // end parent navigasi
     // End Slider
 });

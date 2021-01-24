@@ -41,3 +41,7 @@ function deleteSlider(id) {
             }
         });
 }
+
+function deleteParentNav(){
+    alert('Navigasi Akan di Hapus');
+}
