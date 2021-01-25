@@ -127,3 +127,54 @@ function deleteNav(id) {
             }
         });
 }
+
+function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+function setModalMaxHeight(element) {
+    this.$element = $(element);
+    this.$content = this.$element.find(".modal-content");
+    var borderWidth = this.$content.outerHeight() - this.$content.innerHeight();
+    var dialogMargin = $(window).width() < 768 ? 20 : 60;
+    var contentHeight = $(window).height() - (dialogMargin + borderWidth);
+    var headerHeight = this.$element.find(".modal-header").outerHeight() || 0;
+    var footerHeight = this.$element.find(".modal-footer").outerHeight() || 0;
+    var maxHeight = contentHeight - (headerHeight + footerHeight);
+
+    this.$content.css({
+        overflow: "hidden",
+    });
+
+    this.$element.find(".modal-body").css({
+        "max-height": maxHeight,
+        "overflow-y": "auto",
+    });
+}
+
+$(".modal").on("show.bs.modal", function () {
+    $(this).show();
+    setModalMaxHeight(this);
+});
+
+$(window).resize(function () {
+    if ($(".modal.in").length != 0) {
+        setModalMaxHeight($(".modal.in"));
+    }
+});

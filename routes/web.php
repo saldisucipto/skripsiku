@@ -36,4 +36,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::match(['get', 'put'], '/navigasi/edit/{id}', 'NavigasiController@updateNav');
         // end parent navigasi
     // End Slider
+    // Product
+    // Kategori Produk
+    Route::get('/product', 'ProductController@index');
+    Route::match(['get', 'post'], '/category-product', 'ProductController@catIndex');
+    // End Product
 });
