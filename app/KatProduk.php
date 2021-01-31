@@ -14,4 +14,9 @@ class KatProduk extends Model
 
     // dklare primary key
     protected $primaryKey = 'id_kategori';
+
+    // dkealre relation
+    public function produk(){
+        return $this->hasMany('App\Produk', 'id_produk');
+    }
 }

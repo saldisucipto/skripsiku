@@ -45,7 +45,7 @@
                                                                     src="/produk/images/{{ $item->foto_kategori }}" alt="">
                                                                 <div class="caption">
                                                                     <h3 style="font-size: 20px" class="text-center">
-                                                                        {{ str_limit($item->nama_kategori, $limit = 30, $end = '.') }}
+                                                                        {{ str_limit($item->nama_kategori, $limit = 20, $end = '.') }}
                                                                     </h3>
                                                                     <p class="text-center"><a href="#"
                                                                             class="btn btn-warning btn-sm"

@@ -18,12 +18,13 @@
                 <li>
                     <a href="#product" data-toggle="collapse" class="@if ($routeName==='product'
                         || $routeName==='category-product' ) active @endif"
-                        aria-expanded="true"><i class="lnr lnr-store"></i> <span>Product</span> <i
-                            class="icon-submenu lnr lnr-chevron-left"></i></a>
+                        aria-expanded="true"><i class="lnr lnr-store"></i> <span>
+                            Product</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
                     <div id="product" class="collapse in" aria-expanded="true" style="">
                         <ul class="nav">
-                            <li><a href="/category-product" class="">Category Product</a></li>
-                            <li><a href="/product" class="">Product</a></li>
+                            <li><a href="/category-product" class=""> <i class="fa fa-archive"></i> Category
+                                    Product</a></li>
+                            <li><a href="/product" class=""><i class="fa fa-product-hunt"></i>Product</a></li>
                         </ul>
                     </div>
                 </li>

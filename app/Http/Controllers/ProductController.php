@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\CompanyInfo;
 use Illuminate\Support\Facades\Route;
 use App\KatProduk;
+use App\Produk;
 
 class ProductController extends Controller
 {
@@ -13,9 +14,15 @@ class ProductController extends Controller
     function index(){
         $routeName = Route::getCurrentRoute()->uri();
         $companyInfo = CompanyInfo::get()->first();
+        $kategori = KatProduk::get()->all();
+        $produk = Produk::with('kategori')->get()->all();
+        // dd($produk);
+        // die;
         return view('backend.products.index',[
             'routeName' => $routeName,
-            'companyInfo' => $companyInfo
+            'companyInfo' => $companyInfo,
+            'kategori' => $kategori,
+            'produk' => $produk
         ]);
     }
 
@@ -45,5 +52,29 @@ class ProductController extends Controller
             'companyInfo' => $companyInfo,
             'category' => $category
         ]);
+    }
+
+    // create
+    function productCreate(Request $create){
+        $data = $create->all();
+        // dd($data);
+        // die;
+        $image = $create->file('foto_produk');
+        $rename_image = preg_replace('/\s+/', '',$image->getClientOriginalName());
+        $nama_image = "foto-produk"."-".time()."-".$rename_image;
+        $path = "produk/images";
+        $image->move($path, $nama_image);
+
+        // proses
+        $produkBaru = new Produk;
+        $produkBaru->id_kategori = $data['id_kategori'];
+        $produkBaru->nama_produk = $data['nama_produk'];
+        $produkBaru->deskripsi_produk = $data['deskripsi_produk'];
+        $produkBaru->foto_produk = $nama_image;
+        $produkBaru->harga_produk = $data['harga_produk'];
+        $produkBaru->part_number = $data['part_number'];
+        $produkBaru->stok_barang = $data['stok_barang'];
+        $produkBaru->save();
+        return redirect()->back()->with('pesan_sukses', 'Berhasil Menambahkan Produk Baru');
     }
 }

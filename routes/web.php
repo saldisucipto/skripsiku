@@ -40,5 +40,6 @@ Route::group(['middleware' => ['auth']], function () {
     // Kategori Produk
     Route::get('/product', 'ProductController@index');
     Route::match(['get', 'post'], '/category-product', 'ProductController@catIndex');
+    Route::post('/product-create', 'ProductController@productCreate');
     // End Product
 });
