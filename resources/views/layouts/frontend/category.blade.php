@@ -1,8 +1,9 @@
 <div class="col-sm-3">
     <div class="left-sidebar">
         <h2>Category</h2>
-        <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-            <div class="panel panel-default">
+        <div class="panel-group category-products" id="accordian">
+            <!--category-productsr-->
+            {{-- <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
@@ -70,15 +71,21 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title"><a href="#">Kids</a></h4>
+            </div> --}}
+            @foreach ($categoryproduct as $item)
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a href="/produk/{{ $item->link }}"><i class="fa fa-arrow-right">
+                                    &nbsp;
+                                </i>{{ $item->nama_kategori }}</a>
+                        </h4>
+                    </div>
                 </div>
-            </div>
-        </div><!--/category-products-->
-
-        <div class="brands_products"><!--brands_products-->
+            @endforeach
+        </div>
+        <!--/category-products-->
+        {{-- <div class="brands_products">
+            <!--brands_products-->
             <h2>Brands</h2>
             <div class="brands-name">
                 <ul class="nav nav-pills nav-stacked">
@@ -87,7 +94,8 @@
                     <li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
                 </ul>
             </div>
-        </div><!--/brands_products-->
+        </div> --}}
+        <!--/brands_products-->
 
         {{-- <div class="price-range"><!--price-range-->
             <h2>Price Range</h2>
@@ -97,9 +105,11 @@
             </div>
         </div><!--/price-range--> --}}
 
-        <div class="shipping text-center"><!--shipping-->
-            <img src="{{asset('assets/frontend/images/home/shipping.jpg')}}" alt="" />
-        </div><!--/shipping-->
+        <div class="shipping text-center">
+            <!--shipping-->
+            <img src="{{ asset('assets/frontend/images/home/shipping.jpg') }}" alt="" />
+        </div>
+        <!--/shipping-->
 
     </div>
 </div>

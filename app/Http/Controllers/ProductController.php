@@ -77,4 +77,44 @@ class ProductController extends Controller
         $produkBaru->save();
         return redirect()->back()->with('pesan_sukses', 'Berhasil Menambahkan Produk Baru');
     }
+
+    // update
+    function productUpdate(Request $update, $id_produk = null){
+        $data = $update->all();
+        $image = $update->file('foto_produk');
+        // dd($data);
+        // die;
+        if($image){
+            $hapusimagelama = Produk::find($id_produk);
+            $image_path = public_path("produk\images\\") .$hapusimagelama->foto_produk;
+            if(file_exists($image_path)) {
+                @unlink($image_path);
+            }
+            $rename_image = preg_replace('/\s+/', '',$image->getClientOriginalName());
+            $nama_image = "foto-produk"."-".time()."-".$rename_image;
+            $path = "produk/images";
+            $image->move($path, $nama_image);
+
+            // proses
+            $updateProduk = Produk::find($id_produk);
+            $updateProduk->id_kategori = $data['id_kategori'];
+            $updateProduk->nama_produk = $data['nama_produk'];
+            $updateProduk->deskripsi_produk = $data['deskripsi_produk'];
+            $updateProduk->foto_produk = $nama_image;
+            $updateProduk->harga_produk = $data['harga_produk'];
+            $updateProduk->part_number = $data['part_number'];
+            $updateProduk->stok_barang = $data['stok_barang'];
+            $updateProduk->save();
+            return redirect()->back()->with('pesan_sukses', 'Berhasil Update Produk');
+        }
+            $updateProduk = Produk::find($id_produk);
+            $updateProduk->id_kategori = $data['id_kategori'];
+            $updateProduk->nama_produk = $data['nama_produk'];
+            $updateProduk->deskripsi_produk = $data['deskripsi_produk'];
+            $updateProduk->harga_produk = $data['harga_produk'];
+            $updateProduk->part_number = $data['part_number'];
+            $updateProduk->stok_barang = $data['stok_barang'];
+            $updateProduk->save();
+            return redirect()->back()->with('pesan_sukses', 'Berhasil Update Produk');
+    }
 }

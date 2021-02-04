@@ -730,6 +730,14 @@ h2.title:before {
     text-decoration: none;
     text-transform: uppercase;
 }
+.category-products .panel-default .panel-heading .panel-title a:hover {
+    color: #134A97;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+}
 
 .panel-group .panel-heading+.panel-collapse .panel-body {
     border-top: 0 none;
@@ -917,7 +925,7 @@ h2.title {
     background: #fff;
     border: 0 none;
     border-radius: 0;
-    color: #FE980F;
+    color: #134A97;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     margin-bottom: 25px;
@@ -925,7 +933,7 @@ h2.title {
 
 .product-overlay .add-to-cart:hover {
     background: #fff;
-    color: #FE980F;
+    color: #134A97;
 }
 
 .product-overlay p {
@@ -946,7 +954,7 @@ h2.title {
 }
 
 .add-to-cart:hover {
-    background: #FE980F;
+    background: #134A97;
     border: 0 none;
     border-radius: 0;
     color: #FFFFFF;
@@ -961,7 +969,7 @@ h2.title {
 }
 
 .add-to-cart:hover {
-    background: #FE980F;
+    background: #134A97;
     color: #FFFFFF;
 }
 
@@ -983,7 +991,7 @@ h2.title {
 
 .choose ul li a:hover {
     background: none;
-    color: #FE980F;
+    color: #134A97;
 }
 
 .category-tab {
@@ -992,7 +1000,7 @@ h2.title {
 
 .category-tab ul {
     background: #40403E;
-    border-bottom: 1px solid #FE980F;
+    border-bottom: 1px solid #134A97;
     list-style: none outside none;
     margin: 0 0 30px;
     padding: 0;

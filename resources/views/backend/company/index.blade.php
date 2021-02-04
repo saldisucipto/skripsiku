@@ -35,7 +35,8 @@
                                                     <label class="col-sm-4 col-form-label">Nama Perusahaan</label>
                                                     <div class="col-sm-6">
                                                         <input type="text" name="nama_perusahaan"
-                                                            value="{{ $companyInfo->nama_perushaan }}" class="form-control"
+                                                            value="{{ $companyInfo->nama_perushaan }}"
+                                                            class="form-control"
                                                             style="text-transform:uppercase; font-weight:bold;" required>
                                                     </div>
                                                 </div>

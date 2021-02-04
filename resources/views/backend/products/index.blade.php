@@ -46,11 +46,111 @@
                                                         </b>{{ str_limit($item->kategori->nama_kategori, $limit = 20, $end = '.') }}
                                                     </p>
                                                     <p class="text-center"><a href="#" class="btn btn-warning btn-sm"
+                                                            data-toggle="modal"
+                                                            data-target="#modalupdate{{ $item->id_produk }}"
                                                             role="button">Update</a> <a href="#"
                                                             class="btn btn-danger btn-sm" role="button">Delete</a></p>
                                                 </div>
                                             </div>
                                         </div>
+                                        {{-- UPDATE modal --}}
+                                        <div class="modal fade" id="modalupdate{{ $item->id_produk }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="modalupdate{{ $item->id_produk }}"
+                                            aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog modal-md">
+                                                <div class="modal-content" style="overflow: hidden;">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-hidden="true">×</button>
+                                                        <h4 class="modal-title" id="myLargeModalLabel">Update Produk
+                                                        </h4>
+                                                    </div>
+                                                    <div class="modal-body" style="max-height: 482.4px; overflow-y: auto;">
+                                                        <form action="/product-update/{{ $item->id_produk }}"
+                                                            method="POST" enctype="multipart/form-data">
+                                                            @method('PUT')
+                                                            @csrf
+                                                            <img style="margin: 0 auto; padding-bottom: 20px;"
+                                                                class="img-responsive"
+                                                                src="/produk/images/{{ $item->foto_produk }}" alt="">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label">Nama Produk</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" name="nama_produk"
+                                                                        value="{{ $item->nama_produk }}"
+                                                                        placeholder="Nama Produk" class="form-control"
+                                                                        required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label">Under
+                                                                    Kategori</label>
+                                                                <div class="col-sm-8">
+                                                                    <select class="form-control" name="id_kategori">
+                                                                        @foreach ($kategori as $itemkat)
+                                                                            <option @if ($item->id_kategori == $itemkat->id_kategori) selected @endif
+                                                                                value="{{ $itemkat->id_kategori }}">
+                                                                                {{ $itemkat->nama_kategori }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label">Deskripsi
+                                                                    Produk</label>
+                                                                <div class="col-sm-8">
+                                                                    <textarea class="form-control" name="deskripsi_produk"
+                                                                        cols="30"
+                                                                        rows="5">{{ $item->deskripsi_produk }}</textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label">Harga Produk</label>
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" placeholder="Harga produk"
+                                                                        name="harga_produk" class="form-control"
+                                                                        value="{{ $item->harga_produk }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label">Part Number
+                                                                    Produk</label>
+                                                                <div class="col-sm-4">
+                                                                    <input type="text" placeholder="Part Number Produk"
+                                                                        name="part_number"
+                                                                        value="{{ $item->part_number }}"
+                                                                        class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label">Stok Produk</label>
+                                                                <div class="col-sm-2">
+                                                                    <input type="number" placeholder="Stok" min="0"
+                                                                        name="stok_barang"
+                                                                        value="{{ $item->stok_barang }}"
+                                                                        class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-4 col-form-label">Foto Produk</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="file" name="foto_produk">
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+                                        {{-- End Modal --}}
+
                                     @endforeach
                                 </div>
                             </div>
@@ -71,7 +171,7 @@
     {{-- End Footer --}}
     </div>
     {{-- Modal --}}
-    {{-- modal --}}
+    {{-- UPDATE modal --}}
     <div class="modal fade" id="myLargeModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-md">
