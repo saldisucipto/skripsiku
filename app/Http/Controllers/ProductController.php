@@ -53,6 +53,46 @@ class ProductController extends Controller
             'category' => $category
         ]);
     }
+    // update categori
+    function catUpdate(Request $update, $id_kategori = null){
+        if($update->isMethod('PUT')){
+            $data = $update->all();
+            $image = $update->file('foto_kategori');
+            if($image){
+                $hapusimagelama = KatProduk::find($id_kategori);
+                $image_path = public_path("produk\images\\") .$hapusimagelama->foto_kategori;
+                if(file_exists($image_path)) {
+                    @unlink($image_path);
+                }
+                $rename_image = preg_replace('/\s+/', '', $image->getClientOriginalName());
+                $nama_image = "kat_produk_image"."-".time()."-".$rename_image;
+                $path = "produk/images";
+                $image->move($path, $nama_image);
+                $updateCatProduct = KatProduk::find($id_kategori);
+                $updateCatProduct->nama_kategori = $data['nama_kategori'];
+                $updateCatProduct->deskripsi_kategori = $data['deskripsi_kategori'];
+                $updateCatProduct->foto_kategori = $nama_image;
+                $updateCatProduct->link = str_slug($data['nama_kategori']);
+                $updateCatProduct->save();
+                return redirect()->back()->with('pesan_sukses', 'Berhasil Meperbaharui Kategori Produk');
+            }else{
+                $updateCatProduct = KatProduk::find($id_kategori);
+                $updateCatProduct->nama_kategori = $data['nama_kategori'];
+                $updateCatProduct->deskripsi_kategori = $data['deskripsi_kategori'];
+                // $updateCatProduct->foto_kategori = $nama_image;
+                $updateCatProduct->link = str_slug($data['nama_kategori']);
+                $updateCatProduct->save();
+                return redirect()->back()->with('pesan_sukses', 'Berhasil Meperbaharui Kategori Produk');
+            }
+        }else{
+            $delKat = KatProduk::find($id_kategori);
+            $image_path = public_path("produk\images\\") .$delKat->foto_kategori;
+            if(file_exists($image_path)) {
+                @unlink($image_path);
+            }
+            $delKat->delete();
+        }
+    }
 
     // create
     function productCreate(Request $create){
@@ -79,7 +119,8 @@ class ProductController extends Controller
     }
 
     // update
-    function productUpdate(Request $update, $id_produk = null){
+function productUpdate(Request $update, $id_produk = null){
+    if($update->isMethod('PUT')){
         $data = $update->all();
         $image = $update->file('foto_produk');
         // dd($data);
@@ -106,7 +147,7 @@ class ProductController extends Controller
             $updateProduk->stok_barang = $data['stok_barang'];
             $updateProduk->save();
             return redirect()->back()->with('pesan_sukses', 'Berhasil Update Produk');
-        }
+        }else{
             $updateProduk = Produk::find($id_produk);
             $updateProduk->id_kategori = $data['id_kategori'];
             $updateProduk->nama_produk = $data['nama_produk'];
@@ -116,5 +157,14 @@ class ProductController extends Controller
             $updateProduk->stok_barang = $data['stok_barang'];
             $updateProduk->save();
             return redirect()->back()->with('pesan_sukses', 'Berhasil Update Produk');
-    }
+        }
+    }else{
+        $hapusimagelama = Produk::find($id_produk);
+        $image_path = public_path("produk\images\\") .$hapusimagelama->foto_produk;
+        if(file_exists($image_path)) {
+            @unlink($image_path);
+        }
+        $hapusimagelama->delete();
+       }
+}
 }

@@ -36,7 +36,7 @@
                                     @foreach ($produk as $item)
                                         <div class="col-sm-6 col-md-4">
                                             <div class="thumbnail">
-                                                <img style="max-height: 500px" class="img-responsive"
+                                                <img style="max-height: 249px" class="img-responsive"
                                                     src="/produk/images/{{ $item->foto_produk }}" alt="">
                                                 <div class="caption">
                                                     <h3 style="font-size: 20px" class="text-center">
@@ -49,7 +49,9 @@
                                                             data-toggle="modal"
                                                             data-target="#modalupdate{{ $item->id_produk }}"
                                                             role="button">Update</a> <a href="#"
-                                                            class="btn btn-danger btn-sm" role="button">Delete</a></p>
+                                                            class="btn btn-danger btn-sm"
+                                                            onclick="prodDel({{ $item->id_produk }})"
+                                                            role="button">Delete</a></p>
                                                 </div>
                                             </div>
                                         </div>

@@ -49,7 +49,8 @@
                                                     <td class="text-center"><a href="#" class="btn btn-xs btn-warning"
                                                             data-toggle="modal" data-target="#editParentNav"><i
                                                                 class="fa fa-eye"></i>
-                                                            Edit</a>|<a href="#" onclick="deleteParentNav({{ $item->id }})"
+                                                            Edit</a>|<a href="#"
+                                                            onclick="deleteParentNav({{ $item->id }})"
                                                             class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>
                                                             Delete</a></td>
                                                 </tr>
@@ -138,8 +139,7 @@
                                                         class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>
                                                         Delete</a></td>
                                             </tr>
-                                            {{-- Modal Edit Navigasi
-                                            --}}
+                                            {{-- Modal Edit Navigasi --}}
                                             <div class="modal fade" id="modalEditNav" tabindex="-1" role="dialog"
                                                 aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
