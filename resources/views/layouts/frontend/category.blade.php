@@ -75,7 +75,7 @@
             @foreach ($categoryproduct as $item)
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4 class="panel-title"><a href="/produk/{{ $item->link }}"><i class="fa fa-arrow-right">
+                        <h4 class="panel-title"><a href="/kategori/{{ $item->link }}"><i class="fa fa-arrow-right">
                                     &nbsp;
                                 </i>{{ $item->nama_kategori }}</a>
                         </h4>
