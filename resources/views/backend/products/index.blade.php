@@ -25,11 +25,29 @@
                     <div class="row">
                         <div class="panel panel-headline">
                             <div class="panel-heading">
-                                <h3 class="panel-tile">Products Controller</h3>
-                                <p class="panel-subtitle">Konfigurasi Products</p>
-                                <p> <a href="#" class="btn btn-sm btn-primary" data-toggle="modal"
-                                        data-target="#myLargeModal"> <i class="fa fa-plus"></i> Create New
-                                        Product</a></p>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h3 class="panel-tile">Products Controller</h3>
+                                        <p class="panel-subtitle">Konfigurasi Products</p>
+                                        <p> <a href="#" class="btn btn-sm btn-primary" data-toggle="modal"
+                                                data-target="#myLargeModal"> <i class="fa fa-plus"></i> Create New
+                                                Product</a></p>
+                                    </div>
+                                    <div class="col-sm-6" style="padding-top: 40px">
+                                        <div class="form-group">
+                                            <form action="/search-product" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-sm-8"><input type="search" name="search" id="search"
+                                                            class="form-control"></div>
+                                                    <div class="col-sm-2"><a href="" class="btn btn-sm btn-primary"><i
+                                                                class="fa fa-search"></i> Search </a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="panel-body">
                                 <div class="row">

@@ -21,7 +21,8 @@ class StaticController extends Controller
         $navigasi = Navigasi::with('parent')->get();
         $parentNav = ParentNavigasi::with('navigasi')->get()->all();
         $categoryproduct = KatProduk::get()->all();
-        $produk = Produk::get()->all();
+        // $produk = Produk::get()->all();
+        $produk = Produk::orderBy('created_at', 'desc')->paginate(6);
         $produkrecomended = Produk::inRandomOrder()->limit(3)->get();
         return view('welcome', [
             'routeName' => $routeName,

@@ -41,6 +41,9 @@
                         </div>
                     @endforeach
                 </div>
+                <div class="text-center">
+                    {{ $produk->links() }}
+                </div>
 
                 <div class="recommended_items">
                     <!--recommended_items-->
@@ -68,6 +71,7 @@
                                     </div>
                                 @endforeach
                             </div>
+
                         </div>
                     </div>
                 </div>
