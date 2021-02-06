@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'StaticController@welcome');
+// register customer
+Route::match(['get', 'post'], '/register-customers', 'CustomerController@index')->name('registercust');
 
 Auth::routes();
 
@@ -26,15 +28,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/edit-info/{id}', 'CompanyInfoController@edit');
     // End Company Info
     // Start Slider
-        // parent nav
-        Route::match(['get', 'post'], '/navigasi', 'NavigasiController@index');
-        Route::post('/navigasi-parent', 'NavigasiController@craetaParentNav');
-        Route::match(['get', 'put'], '/navigasi-parent/edit/{id}', 'NavigasiController@updateParentNav');
-        // end parent nav
-        // navigasi
-        Route::post('/navigasi', 'NavigasiController@createNav');
-        Route::match(['get', 'put'], '/navigasi/edit/{id}', 'NavigasiController@updateNav');
-        // end parent navigasi
+    // parent nav
+    Route::match(['get', 'post'], '/navigasi', 'NavigasiController@index');
+    Route::post('/navigasi-parent', 'NavigasiController@craetaParentNav');
+    Route::match(['get', 'put'], '/navigasi-parent/edit/{id}', 'NavigasiController@updateParentNav');
+    // end parent nav
+    // navigasi
+    Route::post('/navigasi', 'NavigasiController@createNav');
+    Route::match(['get', 'put'], '/navigasi/edit/{id}', 'NavigasiController@updateNav');
+    // end parent navigasi
     // End Slider
     // Product
     // Kategori Produk
