@@ -50,4 +50,21 @@ class CustomerController extends Controller
             'navigasi' => $navigasi,
         ]);
     }
+
+    public function customers()
+    {
+        // return "customers page";
+        $routeName = Route::getCurrentRoute()->uri();
+        $companyInfo = CompanyInfo::get()->first();
+        $navigasi = Navigasi::with('parent')->get();
+        $parentNav = ParentNavigasi::with('navigasi')->get()->all();
+        $customer = Customers::get()->all();
+        return view('backend.customers.index', [
+            'routeName' => $routeName,
+            'companyInfo' => $companyInfo,
+            'parentNav' => $parentNav,
+            'navigasi' => $navigasi,
+            'customer' => $customer
+        ]);
+    }
 }

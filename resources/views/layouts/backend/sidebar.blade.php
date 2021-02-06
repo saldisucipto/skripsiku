@@ -15,6 +15,9 @@
                 {{-- <li><a href="#product" class=" @if ($routeName === 'product') active @endif"><i
                             class="lnr lnr-store"></i> <span> Product </span></a>
                 </li> --}}
+                <li><a href="/home-customers" class=" @if ($routeName==='home-customers' ) active @endif"><i class="lnr lnr-users"></i> <span>Users
+                            Customers</span></a>
+
                 <li>
                     <a href="#product" data-toggle="collapse" class="@if ($routeName==='product'
                         || $routeName==='category-product' ) active @endif"

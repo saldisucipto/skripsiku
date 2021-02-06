@@ -47,4 +47,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/product-create', 'ProductController@productCreate');
     Route::match(['get', 'put'], '/product-update/{id}', 'ProductController@productUpdate');
     // End Product
+
+    Route::get('/home-customers', 'CustomerController@customers');
 });
