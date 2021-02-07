@@ -11,7 +11,7 @@
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
                             <li><a href="/register-customers"><i class="fa fa-user"></i> Register </a></li>
-                            <li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
+                            <li><a href="/customerlogin"><i class="fa fa-lock"></i> Login</a></li>
                         </ul>
                     </div>
                 </div>

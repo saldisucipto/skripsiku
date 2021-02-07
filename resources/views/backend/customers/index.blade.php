@@ -50,13 +50,22 @@
                                                 <td>{{ $item->nama_lengkap }}</td>
                                                 <td>{{ $item->username }}</td>
                                                 <td>{{ $item->email }}</td>
-                                                <td>{{ $item->active }}</td>
-                                                <td class="text-center"><a href="#" class="btn btn-xs btn-warning"
-                                                        data-toggle="modal" data-target="#modalEditNav"><i
-                                                            class="fa fa-eye"></i>
-                                                        Edit</a>|<a href="#" onclick="deleteNav({{ $item->id }})"
-                                                        class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>
-                                                        Delete</a></td>
+                                                <td>
+                                                    @if ($item->active == 1)
+                                                        <span class="label label-primary">Active</span>
+                                                    @else
+                                                        <span class="label label-warning">Not Active</span>
+                                                    @endif
+                                                </td>
+                                                <td class="text-center">
+                                                    @if ($item->active == 1)
+                                                        <a href="#" class="btn btn-sm btn-danger">Deactive</a>
+                                                    @else
+                                                        {{-- <span class="label label-warning">Not Active</span> --}}
+                                                        <a href="#" class="btn btn-sm btn-primary">Activated User</a>
+
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                             </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 
 use App\CompanyInfo;
 use App\Navigasi;
@@ -66,5 +67,55 @@ class CustomerController extends Controller
             'navigasi' => $navigasi,
             'customer' => $customer
         ]);
+    }
+
+    public function login(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+            // if (auth()->guard('customer')->check()) {
+            //     return redirect(route('beranda'));
+            // }
+            // return redirect('/');
+
+            // Validasi Data yang diterima
+            $this->validate($request, [
+            'email' => 'required|email|exists:customers,email',
+            'password' => 'required|string'
+            ]);
+            //CUKUP MENGAMBIL EMAIL DAN PASSWORD SAJA DARI REQUEST
+            //KARENA JUGA DISERTAKAN TOKEN
+            // $auth = $request->only('email', 'password');
+            // $auth['active'] = 1; //TAMBAHKAN JUGA STATUS YANG BISA LOGIN HARUS 1
+
+
+            //CHECK UNTUK PROSES OTENTIKASI
+            // //DARI GUARD CUSTOMER, KITA ATTEMPT PROSESNYA DARI DATA $AUTH
+            // if (auth()->guard('customer')->attempt($auth)) {
+            //     //JIKA BERHASIL MAKA AKAN DIREDIRECT KE DASHBOARD
+            //     // dd(auth()->guard('customer')->check());
+            //     // die;
+            //     return redirect()->intended(route('beranda'));
+            // }
+            if (Auth::guard('customer')->attempt($request->only('email', 'password'), $request->filled('remember'))) {
+                //Authentication passed...
+                return redirect()
+                    ->intended(route('beranda'))
+                    ->with('status', 'You are Logged in as Admin!');
+            }
+
+            //JIKA GAGAL MAKA REDIRECT KEMBALI BERSERTA NOTIFIKASI
+            return redirect()->back()->with(['error' => 'Email / Password Salah']);
+        } else {
+            $routeName = Route::getCurrentRoute()->uri();
+            $companyInfo = CompanyInfo::get()->first();
+            $navigasi = Navigasi::with('parent')->get();
+            $parentNav = ParentNavigasi::with('navigasi')->get()->all();
+            return view('frontend.login.index', [
+                'routeName' => $routeName,
+                'companyInfo' => $companyInfo,
+                'parentNav' => $parentNav,
+                'navigasi' => $navigasi,
+            ]);
+        }
     }
 }

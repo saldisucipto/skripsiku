@@ -26,5 +26,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
+        Gate::define('isActive', function ($customers) {
+            return $customers->active == 1;
+        });
     }
 }

@@ -11,9 +11,15 @@
 |
 */
 
-Route::get('/', 'StaticController@welcome');
+Route::get('/', 'StaticController@welcome')->name('beranda');
 // register customer
 Route::match(['get', 'post'], '/register-customers', 'CustomerController@index')->name('registercust');
+// login customer
+// Route::post('/login', 'CustomerController@login')
+Route::match(['get', 'post'], '/customerlogin', 'CustomerController@login');
+Route::namespace('Auth')->group(function () {
+    Route::post('/logincustomer', 'CustomerLoginController@loginCustomer');
+});
 
 Auth::routes();
 
@@ -49,4 +55,10 @@ Route::group(['middleware' => ['auth']], function () {
     // End Product
 
     Route::get('/home-customers', 'CustomerController@customers');
+});
+
+Route::group(['middleware' => 'customers'], function () {
+    Route::get('/orders', function () {
+        return "Order Page";
+    });
 });
