@@ -14,7 +14,8 @@ use App\Produk;
 class StaticController extends Controller
 {
     // index welcome
-    function welcome(){
+    public function welcome()
+    {
         $routeName = Route::getCurrentRoute()->uri();
         $companyInfo = CompanyInfo::get()->first();
         $slider = BannerSlider::get()->all();

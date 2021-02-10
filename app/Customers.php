@@ -15,18 +15,29 @@ class Customers extends Authenticatable
 
     protected $guard = 'customer';
 
-    protected $primayKey = 'id_customers';
+    protected $primaryKey = 'id_customers';
     // deklare guarded table
     protected $guarded = [];
 
+    // table
+    protected $table="customers";
+
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function setPasswordAttribute($password)
-    {
-        if (\Hash::needsRehash($password)) {
-            $password = \Hash::make($password);
-        }
-        $this->attributes['password'] = $password;
-    }
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

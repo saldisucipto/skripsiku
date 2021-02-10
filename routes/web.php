@@ -16,9 +16,10 @@ Route::get('/', 'StaticController@welcome')->name('beranda');
 Route::match(['get', 'post'], '/register-customers', 'CustomerController@index')->name('registercust');
 // login customer
 // Route::post('/login', 'CustomerController@login')
-Route::match(['get', 'post'], '/customerlogin', 'CustomerController@login');
-Route::namespace('Auth')->group(function () {
-    Route::post('/logincustomer', 'CustomerLoginController@loginCustomer');
+Route::prefix('customer')->group(function () {
+    Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('admin.login');
+    Route::post('/login', 'Auth\CustomerLoginController@login')->name('admin.login.submit');
+    Route::post('/logout', 'Auth\CustomerLoginController@logout')->name('logout.customers');
 });
 
 Auth::routes();

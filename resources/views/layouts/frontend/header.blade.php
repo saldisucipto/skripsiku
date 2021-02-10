@@ -10,8 +10,28 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="/register-customers"><i class="fa fa-user"></i> Register </a></li>
-                            <li><a href="/customerlogin"><i class="fa fa-lock"></i> Login</a></li>
+                            {{-- {{ Auth::auth('customer')->user()->nama_lengkap }} --}}
+                            @if (Auth::guard('customer')->check())
+                                <li style="padding-top: 10px" class="dropdown"><a href="" class="active">
+                                        Hallo, {{ Auth::guard('customer')->user()->nama_lengkap }}<i
+                                            class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul role="menu" class="sub-menu"
+                                        style="box-shadow: 0px 0px 0px 0px #fff; padding-top: 10px;">
+                                        <li class="text-right"><a class="text-bold" style="text-decoration:none"
+                                                href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                                <i class="fa fa-power-off"></i> Logout</a></li>
+                                        <form id="logout-form" action="{{ route('logout.customers') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </ul>
+                                </li>
+                            @else
+                                <li><a href="/register-customers"><i class="fa fa-user"></i> Register </a></li>
+                                <li><a href="{{ route('admin.login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
