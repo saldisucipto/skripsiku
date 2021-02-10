@@ -26,11 +26,7 @@
                 <div class="col-sm-12">
                     <div class="panel panel-headline">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Navigasi</h3>
-                            <p class="panel-subtitle">Panel Navigasi Controller</p>
-                            <br>
-                            <a href="#" data-target="#createNav" data-toggle="modal" class="btn btn-sm btn-primary">Create
-                                New Navigasi</a>
+                            <h3 class="panel-title">Daftar Customers</h3>
                         </div>
                         <div class="panel-body">
                             <div class="panel-body">
@@ -59,11 +55,12 @@
                                                 </td>
                                                 <td class="text-center">
                                                     @if ($item->active == 1)
-                                                        <a href="#" class="btn btn-sm btn-danger">Deactive</a>
+                                                        <a href="/home/deactive/{{ $item->id_customers }}"
+                                                            class="btn btn-sm btn-danger">Deactive</a>
                                                     @else
                                                         {{-- <span class="label label-warning">Not Active</span> --}}
-                                                        <a href="#" class="btn btn-sm btn-primary">Activated User</a>
-
+                                                        <a href="/home/activecust/{{ $item->id_customers }}"
+                                                            class="btn btn-sm btn-primary">Activated User</a>
                                                     @endif
                                                 </td>
                                             </tr>

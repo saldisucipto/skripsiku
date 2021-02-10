@@ -20,6 +20,9 @@ Route::prefix('customer')->group(function () {
     Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\CustomerLoginController@login')->name('admin.login.submit');
     Route::post('/logout', 'Auth\CustomerLoginController@logout')->name('logout.customers');
+    // Route::get('/orders', function () {
+
+    // });
 });
 
 Auth::routes();
@@ -56,10 +59,6 @@ Route::group(['middleware' => ['auth']], function () {
     // End Product
 
     Route::get('/home-customers', 'CustomerController@customers');
-});
-
-Route::group(['middleware' => 'customers'], function () {
-    Route::get('/orders', function () {
-        return "Order Page";
-    });
+    Route::get('/home/activecust/{id_customers}', 'CustomerController@actiavtedCust');
+    Route::get('/home/deactive/{id_customers}', 'CustomerController@deacactiavtedCust');
 });

@@ -68,4 +68,22 @@ class CustomerController extends Controller
             'customer' => $customer
         ]);
     }
+
+    public function actiavtedCust($id_customers = null)
+    {
+        // $data = $update->all();
+        $cust = Customers::find($id_customers);
+        $cust->active = 1;
+        $cust->save();
+        return redirect()->back()->with('pesan_sukses', 'Customers Sudah Aktif');
+    }
+
+    public function deacactiavtedCust($id_customers = null)
+    {
+        // $data = $update->all();
+        $cust = Customers::find($id_customers);
+        $cust->active = 0;
+        $cust->save();
+        return redirect()->back()->with('pesan_sukses', 'Customers Sudah Tidak Aktif');
+    }
 }

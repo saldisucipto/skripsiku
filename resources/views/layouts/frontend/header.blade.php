@@ -10,7 +10,6 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            {{-- {{ Auth::auth('customer')->user()->nama_lengkap }} --}}
                             @if (Auth::guard('customer')->check())
                                 <li style="padding-top: 10px" class="dropdown"><a href="" class="active">
                                         Hallo, {{ Auth::guard('customer')->user()->nama_lengkap }}<i
