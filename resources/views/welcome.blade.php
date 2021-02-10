@@ -7,7 +7,6 @@
     {{-- {{ Session::get('nama_lengkap') }} --}}
     {{-- {{ Auth::guard('customers')->nama_lengkap }} --}}
 
-
     {{-- Strat Slider --}}
     @include('layouts.frontend.slider')
     {{-- End Slider --}}
