@@ -22,23 +22,35 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img style="height: 268px; weight: 249px;"
-                                            src="/produk/images/{{ $item->foto_produk }}"
-                                            alt="{{ $item->nama_produk }}" />
-                                        <h2>{{ rupiah($item->harga_produk) }}</h2>
-                                        <p>{{ $item->nama_produk }}</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i
-                                                class="fa fa-shopping-cart"></i>Order Barang Ini</a>
+                                        <a href="#"> <img style="height: 268px; weight: 249px;"
+                                                src="/produk/images/{{ $item->foto_produk }}"
+                                                alt="{{ $item->nama_produk }}" /></a>
+                                        <h2><a href="" class="nama-produk">{{ $item->nama_produk }}</a></h2>
+                                        <p>{{ rupiah($item->harga_produk) }}</p>
                                     </div>
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Tambahkan ke Keranjang</a></li>
-                                        {{-- <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li> --}}
-                                    </ul>
                                 </div>
                             </div>
                         </div>
+                        {{-- <!-- Modal -->
+                        <div class="modal fade" id="order{{ $item->id_produk }}" tabindex="-1" role="dialog"
+                            aria-labelledby="modalOrder" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="modalOrder"><strong>Order</strong>
+                                            {{ $item->nama_produk }}</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
                     @endforeach
                 </div>
                 <div class="text-center">

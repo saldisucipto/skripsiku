@@ -2460,3 +2460,7 @@ textarea {
 .contact-info .social-networks ul li a:hover {
     color: #134A97;
 }
+
+.features_items .product-image-wrapper .single-products .productinfo  a:hover{
+    text-decoration: none;
+}

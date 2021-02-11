@@ -1,6 +1,8 @@
     <div class="header-middle">
         <!--header-middle-->
         <div class="container">
+            <!--/header-middle-->
+
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
@@ -31,13 +33,34 @@
                                 <li><a href="/register-customers"><i class="fa fa-user"></i> Register </a></li>
                                 <li><a href="{{ route('admin.login') }}"><i class="fa fa-lock"></i> Login</a></li>
                             @endif
+
                         </ul>
+
                     </div>
+
+                    @if (Session::has('sukses'))
+                        <div class="alert alert-success alert-dismissible" role="alert"
+                            style="position: absolute; top: 50px; right: 0;">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <i class="fa fa-check-circle"></i> {!! session('sukses') !!}
+                        </div>
+                    @endif
+                    @if (Session::has('logout'))
+                        <div class="alert alert-danger alert-dismissible" role="alert"
+                            style="position: absolute; top: 50px; right: 0;">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <i class="fa fa-exclamation-triangle"></i> {!! session('logout') !!}
+                        </div>
+                    @endif
                 </div>
             </div>
+
         </div>
     </div>
-    <!--/header-middle-->
+    </div>
+
 
     <div class="corak-air">
         <div class="container">

@@ -46,7 +46,7 @@ class CustomerLoginController extends Controller
         // dd($data);
         // die;
         if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            return redirect(route('beranda'));
+            return redirect(route('beranda'))->with('sukses', 'Berhasil Login');
         }
         // jika gagal
         return redirect()->back()->withInput($request->only('email', 'remember'));
@@ -57,6 +57,6 @@ class CustomerLoginController extends Controller
         Auth::guard('customer')->logout();
         $request->session()->flush();
         $request->session()->regenerate();
-        return redirect('/');
+        return redirect('/')->with('logout', 'Anda Sekarang Sudah Logout!');
     }
 }
