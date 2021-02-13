@@ -1,8 +1,9 @@
-<footer id="footer"><!--Footer-->
+<footer id="footer">
+    <!--Footer-->
     <div class="footer-top">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 fa-bold">
+                <div class="col-sm-8">
                     <div class="companyinfo">
                         <h2>PT. Cipta Aneka Air</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
@@ -11,7 +12,7 @@
                 <div class="col-sm-4">
                     <div class="authorized-product">
                         <h3>Authorized Products</h3>
-                        <img src="{{asset('represented-product.png')}}" alt="Authorized Product" />
+                        <img src="{{ asset('represented-product.png') }}" alt="Authorized Product" />
                     </div>
                 </div>
             </div>
@@ -74,7 +75,8 @@
                         <h2>About Shopper</h2>
                         <form action="#" class="searchform">
                             <input type="text" placeholder="Your email address" />
-                            <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                            <button type="submit" class="btn btn-default"><i
+                                    class="fa fa-arrow-circle-o-right"></i></button>
                             <p>Get the most recent updates from <br />our site and be updated your self...</p>
                         </form>
                     </div>
@@ -90,7 +92,8 @@
                 <p class="pull-left">Copyright © @php
                     echo date('Y');
                 @endphp PT.CIPTA ANEKA AIR. All rights reserved.</p>
-                <p class="pull-right">Designed by <span><a style="text-decoration: none; color:#1654A3;" target="_blank">Saldi Sucipto</a></span></p>
+                <p class="pull-right">Designed by <span><a style="text-decoration: none; color:#1654A3;"
+                            target="_blank">Saldi Sucipto</a></span></p>
             </div>
         </div>
     </div>

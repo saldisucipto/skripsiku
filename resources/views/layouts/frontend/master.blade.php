@@ -13,6 +13,8 @@
     <link href="{{ asset('assets/frontend/css/price-range.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/frontend/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/frontend/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/product-detail.css') }}" rel="stylesheet">
+
     <link href="{{ asset('assets/frontend/css/responsive.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.css') }}">
     <!--[if lt IE 9]>
@@ -38,10 +40,12 @@
     </footer>
     <!--/Footer-->
     <script src="{{ asset('assets/frontend/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/jquery.mask.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/jquery.scrollUp.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/price-range.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/jquery.prettyPhoto.js') }}"></script>
+    <script src="{{ asset('js/product-order.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
 </body>
 

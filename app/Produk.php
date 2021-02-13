@@ -16,7 +16,8 @@ class Produk extends Model
     protected $primaryKey = 'id_produk';
 
     // Deklare relations
-    public function kategori(){
+    public function kategori()
+    {
         return $this->belongsTo('App\KatProduk', 'id_kategori');
     }
 }

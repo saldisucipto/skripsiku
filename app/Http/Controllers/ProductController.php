@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\KatProduk;
 use App\Produk;
 use DB;
+use Str;
 
 class ProductController extends Controller
 {
@@ -113,6 +114,7 @@ class ProductController extends Controller
         $produkBaru = new Produk;
         $produkBaru->id_kategori = $data['id_kategori'];
         $produkBaru->nama_produk = $data['nama_produk'];
+        $produkBaru->slug = Str::slug($data['nama_produk']);
         $produkBaru->deskripsi_produk = $data['deskripsi_produk'];
         $produkBaru->foto_produk = $nama_image;
         $produkBaru->harga_produk = $data['harga_produk'];
@@ -144,6 +146,7 @@ class ProductController extends Controller
                 $updateProduk = Produk::find($id_produk);
                 $updateProduk->id_kategori = $data['id_kategori'];
                 $updateProduk->nama_produk = $data['nama_produk'];
+                $updateProduk->slug = Str::slug($data['nama_produk']);
                 $updateProduk->deskripsi_produk = $data['deskripsi_produk'];
                 $updateProduk->foto_produk = $nama_image;
                 $updateProduk->harga_produk = $data['harga_produk'];
@@ -155,6 +158,7 @@ class ProductController extends Controller
                 $updateProduk = Produk::find($id_produk);
                 $updateProduk->id_kategori = $data['id_kategori'];
                 $updateProduk->nama_produk = $data['nama_produk'];
+                $updateProduk->slug = Str::slug($data['nama_produk']);
                 $updateProduk->deskripsi_produk = $data['deskripsi_produk'];
                 $updateProduk->harga_produk = $data['harga_produk'];
                 $updateProduk->part_number = $data['part_number'];

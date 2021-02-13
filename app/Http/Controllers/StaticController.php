@@ -36,4 +36,22 @@ class StaticController extends Controller
             'produkrecomended' => $produkrecomended,
         ]);
     }
+
+    public function produkShow($slug)
+    {
+        $routeName = Route::getCurrentRoute()->uri();
+        $companyInfo = CompanyInfo::get()->first();
+        $produkDetail = Produk::where('slug', $slug)->with('kategori')->first();
+        $parentNav = ParentNavigasi::with('navigasi')->get()->all();
+        $navigasi = Navigasi::with('parent')->get();
+        // dd($produkDetail);
+        // die;
+        return view('produk-show', [
+            'routeName' => $routeName,
+            'companyInfo' => $companyInfo,
+            'parentNav' => $parentNav,
+            'navigasi' => $navigasi,
+            'produkDetail' => $produkDetail
+        ]);
+    }
 }
