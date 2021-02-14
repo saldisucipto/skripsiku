@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Home | {{ $companyInfo->nama_perushaan }} | Water And Waste Water Treatment Engineering</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="/company-info/image/{{ $companyInfo->logo2 }}">
+
     <link href="{{ asset('assets/frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/frontend/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/frontend/css/prettyPhoto.css') }}" rel="stylesheet">

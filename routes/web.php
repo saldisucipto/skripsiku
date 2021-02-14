@@ -18,10 +18,14 @@ Route::match(['get', 'post'], '/register-customers', 'CustomerController@index')
 // Route::post('/login', 'CustomerController@login')
 Route::get('/produk/{slug}', 'StaticController@produkShow');
 
+// order
+Route::match(['get', 'post'], '/orders', 'OrderController@trksiOrder')->name('transaksi.order');
+// end order
+
 
 Route::prefix('customer')->group(function () {
-    Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('admin.login');
-    Route::post('/login', 'Auth\CustomerLoginController@login')->name('admin.login.submit');
+    Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('customer.login');
+    Route::post('/login', 'Auth\CustomerLoginController@login')->name('customer.login.submit');
     Route::post('/logout', 'Auth\CustomerLoginController@logout')->name('logout.customers');
 });
 

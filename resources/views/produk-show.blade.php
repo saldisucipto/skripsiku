@@ -75,10 +75,12 @@
                             <p class="header-order">Atur Jumlah Pesanan</p>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <form action="#">
+                                    <form action="{{ route('transaksi.order') }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="id_produk" value=" {{ $produkDetail->id_produk }}">
                                         <input type="number" min="1" value="1" class="form-control input-sm"
-                                            name="qty_order" id="qty-order">
-                                    </form>
+                                            name="qty_orders" id="qty-order">
                                 </div>
                                 <div class="col-sm-8">
                                     <p>Max Pembelian 100 Pcs</p>
@@ -94,10 +96,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <button class="btn btn-primary btn-block">
+                                    <button class="btn btn-primary btn-block" type="submit">
                                         <i class="fa fa-plus"></i> Tambah Ke Keranjang
                                     </button>
                                 </div>
+                                </form>
                                 <div class="col-sm-12">
                                     <button class="btn btn-primary btn-block">
                                         Langsung Order

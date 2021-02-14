@@ -44,7 +44,7 @@
                     <div class="login-form">
                         <!--login form-->
                         <h2>Login to your account</h2>
-                        <form action="{{ route('admin.login.submit') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('customer.login.submit') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             {{-- <input type="text" placeholder="Name"> --}}
                             <input type="email" name="email" placeholder="Email Address">

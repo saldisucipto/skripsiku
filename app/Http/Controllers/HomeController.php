@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\CompanyInfo;
 
-
-
 class HomeController extends Controller
 {
     /**
@@ -29,7 +27,7 @@ class HomeController extends Controller
     {
         $routeName = Route::getCurrentRoute()->uri();
         $companyInfo = CompanyInfo::get()->first();
-        return view('home',[
+        return view('home', [
             'routeName' => $routeName,
             'companyInfo' => $companyInfo,
         ]);

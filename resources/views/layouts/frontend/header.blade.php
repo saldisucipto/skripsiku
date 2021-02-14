@@ -31,7 +31,7 @@
                                 </li>
                             @else
                                 <li><a href="/register-customers"><i class="fa fa-user"></i> Register </a></li>
-                                <li><a href="{{ route('admin.login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                                <li><a href="{{ route('customer.login') }}"><i class="fa fa-lock"></i> Login</a></li>
                             @endif
 
                         </ul>
