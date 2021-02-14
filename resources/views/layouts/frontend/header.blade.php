@@ -93,7 +93,9 @@
                             @foreach ($parentNav as $item)
                                 @if (count($item->navigasi) > 0)
                                     <li class="dropdown"><a href="{{ $item->link }}" class="
-                                             @if ($routeName==$item->link) active @endif">{{ $item->title }}<i class="fa fa-angle-down"></i></a>
+                                         @if ($routeName==$item->link) active @endif"><span style="background-color: red"
+                                                class="badge rounded-pill">0</span>{{ $item->title }}<i
+                                                class="fa fa-angle-down"></i></a>
                                         <ul role="menu" class="sub-menu">
                                             @foreach ($item->navigasi as $submenu)
                                                 <li><a href="{{ $submenu->link }}">{{ $submenu->title }}</a></li>

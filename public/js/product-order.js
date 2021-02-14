@@ -1,4 +1,4 @@
-// Product
+// Product Order
 $(document).ready(function () {
     /* Fungsi formatRupiah */
     // $("#harga-barang");
@@ -20,5 +20,59 @@ $(document).ready(function () {
         }
         rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
         $("#sub-total").text(rupiah);
+    });
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+    });
+    // tambah kerjanjang function
+    $("#tambahKeranjang").click(function () {
+        let id_produk = $("#id_produk").val();
+        let id_customer = $("#id_customer").val();
+        let qtyorder = $("#qty-order").val();
+        let _token = $('meta[name="csrf-token"]').attr("content");
+
+        if (id_customer != null) {
+            $.ajax({
+                url: "/tambahkeranjang",
+                type: "POST",
+                data: {
+                    _token: _token,
+                    id_produk: id_produk,
+                    id_customer: id_customer,
+                    qtyorder: qtyorder,
+                },
+                success: function (result) {
+                    if (result) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Item Di Tambahkan ke Keranjang",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        }).then(function () {
+                            window.location.href = "/";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Sepertinya ada yang salah!",
+                            showConfirmButton: false,
+                            timer: 900,
+                        });
+                    }
+                },
+            });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Anda Harus Login Dulu",
+                showConfirmButton: false,
+                timer: 900,
+            });
+        }
     });
 });

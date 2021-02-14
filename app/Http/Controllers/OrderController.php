@@ -9,6 +9,7 @@ use App\CompanyInfo;
 use App\Navigasi;
 use App\ParentNavigasi;
 use App\Produk;
+use App\TransaksiOrder;
 
 class OrderController extends Controller
 {
@@ -35,5 +36,16 @@ class OrderController extends Controller
             'navigasi' => $navigasi,
             'produkOrder' => $produkOrder
         ]);
+    }
+
+    public function tambahKeranjang(Request $request)
+    {
+        $data = $request->all();
+        $newTrksiOrder = new TransaksiOrder;
+        $newTrksiOrder->id_produk = $data['id_produk'];
+        $newTrksiOrder->id_customer = $data['id_customer'];
+        $newTrksiOrder->qty_orders = $data['qtyorder'];
+        $newTrksiOrder->save();
+        return response()->json('success', 200);
     }
 }

@@ -78,9 +78,15 @@
                                     <form action="{{ route('transaksi.order') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
-                                        <input type="hidden" name="id_produk" value=" {{ $produkDetail->id_produk }}">
+                                        <input type="hidden" id="id_produk" name="id_produk"
+                                            value=" {{ $produkDetail->id_produk }}">
                                         <input type="number" min="1" value="1" class="form-control input-sm"
                                             name="qty_orders" id="qty-order">
+                                        @if (Auth::guard('customer')->check())
+                                            <input type="hidden" name="id_customer" id="id_customer"
+                                                value="{{ Auth::guard('customer')->user()->id_customers }}">
+                                        @endif
+
                                 </div>
                                 <div class="col-sm-8">
                                     <p>Max Pembelian 100 Pcs</p>
@@ -96,16 +102,19 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <button class="btn btn-primary btn-block" type="submit">
+                                    <button id="tambahKeranjang" type="button" role="button"
+                                        class="btn btn-primary btn-block">
                                         <i class="fa fa-plus"></i> Tambah Ke Keranjang
                                     </button>
+
                                 </div>
-                                </form>
-                                <div class="col-sm-12">
+                                <div class="col-sm-12" type="submit">
                                     <button class="btn btn-primary btn-block">
                                         Langsung Order
                                     </button>
                                 </div>
+                                </form>
+
                             </div>
                             <div class="row" style="margin: 10px">
                                 <div class="col-sm-4">

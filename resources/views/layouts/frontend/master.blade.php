@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Home | {{ $companyInfo->nama_perushaan }} | Water And Waste Water Treatment Engineering</title>
     <link rel="icon" type="image/png" sizes="96x96" href="/company-info/image/{{ $companyInfo->logo2 }}">
 
@@ -16,6 +17,8 @@
     <link href="{{ asset('assets/frontend/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/frontend/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/product-detail.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 
     <link href="{{ asset('assets/frontend/css/responsive.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.css') }}">
@@ -42,6 +45,7 @@
     </footer>
     <!--/Footer-->
     <script src="{{ asset('assets/frontend/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/jquery.mask.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/jquery.scrollUp.min.js') }}"></script>

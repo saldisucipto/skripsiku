@@ -20,6 +20,9 @@ Route::get('/produk/{slug}', 'StaticController@produkShow');
 
 // order
 Route::match(['get', 'post'], '/orders', 'OrderController@trksiOrder')->name('transaksi.order');
+
+// tambah keranjang
+Route::post('/tambahkeranjang', 'OrderController@tambahKeranjang')->name('tambah.keranjang');
 // end order
 
 
