@@ -14,7 +14,7 @@ class CreateImageAlternatesTable extends Migration
     public function up()
     {
         Schema::create('image_alternates', function (Blueprint $table) {
-            $table->mediumI('id')->length(12)->unsigned();
+            $table->bigIncrements('id');
             $table->bigInteger('product_id')->unsigned();
             $table->string('image');
             $table->timestamps();
