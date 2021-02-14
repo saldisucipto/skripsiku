@@ -41,10 +41,7 @@ class CustomerLoginController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:6'
         ]);
-        // cek login
-        // $data = $request->all();
-        // dd($data);
-        // die;
+
         if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             return redirect(route('beranda'))->with('sukses', 'Berhasil Login');
         }
