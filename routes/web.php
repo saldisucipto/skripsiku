@@ -23,6 +23,7 @@ Route::match(['get', 'post'], '/orders', 'OrderController@trksiOrder')->name('tr
 
 // tambah keranjang
 Route::post('/tambahkeranjang', 'OrderController@tambahKeranjang')->name('tambah.keranjang');
+Route::get('/keranjang/{id_customers}', 'StaticController@getCountKeranjang');
 // end order
 
 

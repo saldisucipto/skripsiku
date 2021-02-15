@@ -10,6 +10,7 @@ use App\Navigasi;
 use App\ParentNavigasi;
 use App\KatProduk;
 use App\Produk;
+use App\TransaksiOrder;
 
 class StaticController extends Controller
 {
@@ -53,5 +54,12 @@ class StaticController extends Controller
             'navigasi' => $navigasi,
             'produkDetail' => $produkDetail
         ]);
+    }
+
+    // function get keranjang
+    public function getCountKeranjang($id_customer)
+    {
+        $countKerjang = TransaksiOrder::where('id_customer', $id_customer)->get()->count();
+        return response()->json($countKerjang, 200);
     }
 }

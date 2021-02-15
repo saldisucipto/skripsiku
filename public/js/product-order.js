@@ -1,5 +1,17 @@
 // Product Order
 $(document).ready(function () {
+    // getCount Keranjang
+    let id_customer = $("#id_customer").text();
+    if (id_customer) {
+        $.ajax({
+            url: "/keranjang/" + id_customer,
+            type: "get",
+            dataType: "json",
+            success: function (response) {
+                $(".jumlah-keranjang").text(response);
+            },
+        });
+    }
     /* Fungsi formatRupiah */
     // $("#harga-barang");
     // alert(qty_order);

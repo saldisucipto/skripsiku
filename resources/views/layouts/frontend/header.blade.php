@@ -16,6 +16,8 @@
                                 <li style="padding-top: 10px" class="dropdown"><a href="" class="active">
                                         Hallo, {{ Auth::guard('customer')->user()->nama_lengkap }}<i
                                             class="fa fa-angle-down"></i>
+                                        <p style="display: none" id="id_customer">
+                                            {{ Auth::guard('customer')->user()->id_customers }}</p>
                                     </a>
                                     <ul role="menu" class="sub-menu"
                                         style="box-shadow: 0px 0px 0px 0px #fff; padding-top: 10px;">
@@ -93,12 +95,17 @@
                             @foreach ($parentNav as $item)
                                 @if (count($item->navigasi) > 0)
                                     <li class="dropdown"><a href="{{ $item->link }}" class="
-                                         @if ($routeName==$item->link) active @endif"><span style="background-color: red"
-                                                class="badge rounded-pill">0</span>{{ $item->title }}<i
+                                         @if ($routeName==$item->link) active @endif">{{ $item->title }} <span style="background-color: red"
+                                                class="badge rounded-pill jumlah-keranjang"></span><i
                                                 class="fa fa-angle-down"></i></a>
                                         <ul role="menu" class="sub-menu">
                                             @foreach ($item->navigasi as $submenu)
-                                                <li><a href="{{ $submenu->link }}">{{ $submenu->title }}</a></li>
+                                                <li><a href="{{ $submenu->link }}">{{ $submenu->title }}
+                                                        @if ($submenu->title === 'Keranjang')
+                                                            <span style="background-color: red"
+                                                                class="badge rounded-pill jumlah-keranjang"></span>
+                                                        @endif
+                                                    </a></li>
                                             @endforeach
                                         </ul>
                                     </li>
