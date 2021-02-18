@@ -20,4 +20,10 @@ class Produk extends Model
     {
         return $this->belongsTo('App\KatProduk', 'id_kategori');
     }
+
+    // Derkare relation with order produk
+    public function orderKeranjang()
+    {
+        return $this->belongsTo('App\TransaksiOrder', 'id_produk', 'id_produk');
+    }
 }

@@ -11,4 +11,10 @@ class TransaksiOrder extends Model
 
     // deklare primary
     protected $primaryKey = 'id_trksi_order';
+
+    // deklare produk relations
+    public function produk()
+    {
+        return $this->hasMany('App\Produk', 'id_produk', 'id_produk');
+    }
 }

@@ -48,4 +48,22 @@ class OrderController extends Controller
         $newTrksiOrder->save();
         return response()->json('success', 200);
     }
+
+    public function keranjang($id_customers)
+    {
+        $data = TransaksiOrder::with('produk')->where('id_customer', $id_customers)->where('id_order', null)->get();
+        // dd($data);
+        // die;
+        $routeName = Route::getCurrentRoute()->uri();
+        $companyInfo = CompanyInfo::get()->first();
+        $navigasi = Navigasi::with('parent')->get();
+        $parentNav = ParentNavigasi::with('navigasi')->get()->all();
+        return view('frontend.order.transaksi-order', [
+        'routeName' => $routeName,
+            'companyInfo' => $companyInfo,
+            'parentNav' => $parentNav,
+            'navigasi' => $navigasi,
+            'data' => $data
+       ]);
+    }
 }

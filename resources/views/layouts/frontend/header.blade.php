@@ -100,7 +100,9 @@
                                                 class="fa fa-angle-down"></i></a>
                                         <ul role="menu" class="sub-menu">
                                             @foreach ($item->navigasi as $submenu)
-                                                <li><a href="{{ $submenu->link }}">{{ $submenu->title }}
+                                                <li><a href=" @if (Auth::guard('customer')->check()) {{ $submenu->link . '/' . Auth::guard('customer')->user()->id_customers }}
+                                                    @else {{ $submenu->link }} @endif
+                                                        ">{{ $submenu->title }}
                                                         @if ($submenu->title === 'Keranjang')
                                                             <span style="background-color: red"
                                                                 class="badge rounded-pill jumlah-keranjang"></span>

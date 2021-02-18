@@ -7,19 +7,55 @@
     {{-- Section --}}
     <section>
         <div class="container">
+            @php
+                function rupiah($amount)
+                {
+                    $amountrupiah = 'Rp ' . number_format($amount, 0, ',', '.');
+                    return $amountrupiah;
+                }
+
+            @endphp
             <div class="row">
                 {{-- Product Info --}}
                 <div class="col-sm-8">
                     <div class="left-sidebar">
-                        <h2>Keranjang</h2>
+                        <h2>List Keranjang</h2>
                         <div class="panel-group category-products" id="accordian">
-                            {{ $produkOrder->nama_produk }}
+                            @foreach ($data as $item)
+                                @foreach ($item->produk as $produk)
+                                    <div class="card">
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-4">
+                                                <img style=" width: 50%; display: block; margin: 0 auto;"
+                                                    src="/produk/images/{{ $produk->foto_produk }}"
+                                                    alt="{{ $produk->nama_produk }}">
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ $produk->nama_produk }}</h5>
+                                                    <p class="card-text">Part Number : <b>{{ $produk->part_number }}</b>
+                                                    </p>
+                                                    <p class="card-text">Qty Order : {{ $item->qty_orders }}</p>
+                                                    <p class="card-text">{{ rupiah($produk->harga_produk) }} </p>
+                                                    <p>
+                                                        <button>Del</button> | <button>Back</button>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                @endforeach
+                            @endforeach
 
                         </div>
-                        <!--/shipping-->
-
                     </div>
+
+
+                    <!--/shipping-->
+
                 </div>
+
                 {{-- End Product Info --}}
 
                 {{-- Product Info --}}
@@ -27,14 +63,7 @@
                     <div class="left-sidebar">
                         <h2>Order Detail</h2>
                         <div class="panel-group category-products" id="accordian">
-                            @php
-                                function rupiah($amount)
-                                {
-                                    $amountrupiah = 'Rp ' . number_format($amount, 0, ',', '.');
-                                    return $amountrupiah;
-                                }
 
-                            @endphp
                             <div class="product-info" style="margin: 5px">
                                 {{-- <h3><strong>{{ $produkDetail->nama_produk }}</strong></h3>
                                 <p style="font-size: 12px; font-weight:bold;">Terjual: <span class="value">200</span>

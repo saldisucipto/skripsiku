@@ -59,7 +59,7 @@ class StaticController extends Controller
     // function get keranjang
     public function getCountKeranjang($id_customer)
     {
-        $countKerjang = TransaksiOrder::where('id_customer', $id_customer)->get()->count();
+        $countKerjang = TransaksiOrder::where('id_customer', $id_customer)->where('id_order', null)->get()->count();
         return response()->json($countKerjang, 200);
     }
 }
