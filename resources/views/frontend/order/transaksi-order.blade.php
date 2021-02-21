@@ -151,7 +151,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a href="#" class="btn btn-block btn-primary">Make Order</a>
+                                    <a role="button" id="makeorder" class="btn btn-block btn-primary">Make Order</a>
                                 </div>
                             </div>
                         </div>

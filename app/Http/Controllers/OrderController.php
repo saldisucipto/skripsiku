@@ -83,4 +83,10 @@ class OrderController extends Controller
         $Item->delete();
         return response()->json('berhasil di japus', 200);
     }
+
+    public function makeOrder(Request $create)
+    {
+        $data = $create->all();
+        return response()->json($data, 200);
+    }
 }

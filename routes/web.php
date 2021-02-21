@@ -27,6 +27,8 @@ Route::post('/tambahkeranjang', 'OrderController@tambahKeranjang')->name('tambah
 Route::get('/keranjang-delete/{id}', 'OrderController@deleteItemKeranjang');
 Route::get('/jumlah-keranjang/{id_customers}', 'StaticController@getCountKeranjang');
 Route::get('/keranjang/{id_customer}', 'OrderController@keranjang');
+// make order
+Route::post('/make-order', 'OrderController@makeOrder');
 // end order
 
 

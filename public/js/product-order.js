@@ -58,15 +58,12 @@ $(document).ready(function () {
     $("#tambahKeranjang").click(function () {
         let id_produk = $("#id_produk").val();
         let id_customer = $("#id_customer1").text();
-        console.log(id_customer);
-
         let qtyorder = $("#qty-order").val();
         let _token = $('meta[name="csrf-token"]').attr("content");
-
         if (id_customer != null) {
             $.ajax({
                 url: "/tambahkeranjang",
-                type: "get",
+                type: "POST",
                 data: {
                     _token: _token,
                     id_produk: id_produk,
@@ -130,6 +127,59 @@ $(document).ready(function () {
                 var total_banget = total + harga_pengiriman + ppn;
                 $("#total").text(formatRupiah(total_banget, "Rp."));
                 // pengiriman
+            },
+        });
+    });
+
+    // make order
+    $("#makeorder").click(function () {
+        // alert("Button Clicked");
+        var sub_total1 = 0;
+        $(".harga-produk").each(function () {
+            sub_total1 += parseFloat($(this).text());
+        });
+        let id_pengiriman = $("#pengiriman").val();
+        let id_customer = $("#id_customer1").text().replace(/\s+/g, "");
+        let sub_total = sub_total1;
+        let ppn = $("#ppn").text();
+        let ppn_final = ppn.replace(/[^,\d]/g, "");
+        let total = $("#total").text();
+        let total_final = total.replace(/[^,\d]/g, "");
+        let _token = $('meta[name="csrf-token"]').attr("content");
+        $.ajax({
+            url: "/make-order",
+            type: "POST",
+            data: {
+                _token: _token,
+                id_customer: id_customer,
+                id_pengiriman: id_pengiriman,
+                sub_total: sub_total,
+                ppn: ppn_final,
+                total: total_final,
+                catatan: "Catatan",
+            },
+            success: function (result) {
+                console.log(result);
+                if (result) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title:
+                            "Order Berhasil dibuat, Tunggu sebentar anda akan di alihkan ke halaman pembayaran",
+                        showConfirmButton: false,
+                        timer: 2000,
+                    }).then(function () {
+                        window.location.href = "/";
+                    });
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Sepertinya ada yang salah!",
+                        showConfirmButton: false,
+                        timer: 900,
+                    });
+                }
             },
         });
     });
