@@ -167,7 +167,7 @@ $(document).ready(function () {
                         title:
                             "Order Berhasil dibuat, Tunggu sebentar anda akan di alihkan ke halaman pembayaran",
                         showConfirmButton: false,
-                        timer: 2000,
+                        timer: 5000,
                     }).then(function () {
                         window.location.href = "/";
                     });

@@ -11,6 +11,8 @@ use App\ParentNavigasi;
 use App\Produk;
 use App\TransaksiOrder;
 use App\MetodePengiriman;
+use App\Order;
+use DB;
 
 class OrderController extends Controller
 {
@@ -87,6 +89,21 @@ class OrderController extends Controller
     public function makeOrder(Request $create)
     {
         $data = $create->all();
-        return response()->json($data, 200);
+        $createOrder = new Order;
+        $createOrder->id_pengiriman = $data['id_pengiriman'];
+        $createOrder->id_customer = $data['id_customer'];
+        $createOrder->catatan = $data['catatan'];
+        $createOrder->sub_total = $data['sub_total'];
+        $createOrder->ppn = $data['ppn'];
+        $createOrder->total = $data['total'];
+        $createOrder->save();
+        $id_lastOrder = Order::all()->last()->id_order;
+        $id_trksi_order = TransaksiOrder::all()->where('id_order', null);
+        $id_trksi_orders = [];
+        foreach ($id_trksi_order as $item) {
+            $id_trksi_orders[] = $item->id_trksi_order;
+        }
+        DB::table('transaksi_orders')->whereIn('id_trksi_order', $id_trksi_orders)->update(array('id_order' => $id_lastOrder));
+        return response()->json('Succes', 200);
     }
 }
