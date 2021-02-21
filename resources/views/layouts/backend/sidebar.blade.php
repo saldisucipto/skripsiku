@@ -33,14 +33,16 @@
                         </ul>
                     </div>
                 </li>
+                <li><a href="/metode-pengiriman" class=" @if ($routeName==='metode-pengiriman'
+                        ) active @endif"><i class="fa fa-car"></i>
+                        <span>Metode Pengiriman</span></a></li>
+                </li>
                 <li><a href="/slider-banner" class=" @if ($routeName==='slider-banner' ) active @endif"><i class="lnr lnr-cart"></i> <span>Order</span></a>
                 </li>
                 <li><a href="/slider-banner" class=" @if ($routeName==='slider-banner' ) active @endif"><i class="fa fa-money"></i>
                         <span>Pembayaran</span></a></li>
                 </li>
-                <li><a href="/slider-banner" class=" @if ($routeName==='slider-banner' ) active @endif"><i class="fa fa-car"></i>
-                        <span>Pengiriman</span></a></li>
-                </li>
+
                 <li><a href="/slider-banner" class=" @if ($routeName==='slider-banner' ) active @endif"><i class="lnr lnr-chart-bars"></i>
                         <span>Laporan</span></a>
                 </li>

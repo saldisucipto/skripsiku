@@ -23,6 +23,7 @@ Route::match(['get', 'post'], '/orders', 'OrderController@trksiOrder')->name('tr
 
 // tambah keranjang
 Route::post('/tambahkeranjang', 'OrderController@tambahKeranjang')->name('tambah.keranjang');
+Route::get('/keranjang-delete/{id}', 'OrderController@deleteItemKeranjang');
 Route::get('/jumlah-keranjang/{id_customers}', 'StaticController@getCountKeranjang');
 Route::get('/keranjang/{id_customer}', 'OrderController@keranjang');
 // end order
@@ -70,4 +71,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home-customers', 'CustomerController@customers');
     Route::get('/home/activecust/{id_customers}', 'CustomerController@actiavtedCust');
     Route::get('/home/deactive/{id_customers}', 'CustomerController@deacactiavtedCust');
+
+    Route::match(['get', 'post'], '/metode-pengiriman', 'MetodePengirimanController@index');
+    Route::match(['get', 'put'], '/metode-pengiriman/edit/{id}', 'MetodePengirimanController@update');
 });

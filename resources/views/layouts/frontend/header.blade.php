@@ -16,7 +16,7 @@
                                 <li style="padding-top: 10px" class="dropdown"><a href="" class="active">
                                         Hallo, {{ Auth::guard('customer')->user()->nama_lengkap }}<i
                                             class="fa fa-angle-down"></i>
-                                        <p style="display: none" id="id_customer">
+                                        <p style="display: none" id="id_customer1">
                                             {{ Auth::guard('customer')->user()->id_customers }}</p>
                                     </a>
                                     <ul role="menu" class="sub-menu"

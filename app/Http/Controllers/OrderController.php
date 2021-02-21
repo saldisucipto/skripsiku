@@ -66,4 +66,11 @@ class OrderController extends Controller
             'data' => $data
        ]);
     }
+
+    public function deleteItemKeranjang($id)
+    {
+        $Item = TransaksiOrder::find($id);
+        $Item->delete();
+        return response()->json('berhasil di japus', 200);
+    }
 }

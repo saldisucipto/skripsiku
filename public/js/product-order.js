@@ -1,7 +1,7 @@
 // Product Order
 $(document).ready(function () {
     // getCount Keranjang
-    let id_customer = $("#id_customer").text();
+    let id_customer = $("#id_customer1").text();
     if (id_customer) {
         $.ajax({
             url: "/jumlah-keranjang/" + id_customer,
@@ -41,7 +41,9 @@ $(document).ready(function () {
     // tambah kerjanjang function
     $("#tambahKeranjang").click(function () {
         let id_produk = $("#id_produk").val();
-        let id_customer = $("#id_customer").val();
+        let id_customer = $("#id_customer1").text();
+        console.log(id_customer);
+
         let qtyorder = $("#qty-order").val();
         let _token = $('meta[name="csrf-token"]').attr("content");
 
@@ -87,4 +89,77 @@ $(document).ready(function () {
             });
         }
     });
+
+    // total order
+    var harga_produk = 0;
+    $(".harga-produk").each(function () {
+        harga_produk += parseFloat($(this).text());
+    });
+    function formatRupiah(harga_produk, prefix) {
+        var number_string = harga_produk.toString(),
+            split = number_string.split(","),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        // tambahkan titik jika yang di input sudah menjadi harga_produk ribuan
+        if (ribuan) {
+            separator = sisa ? "." : "";
+            rupiah += separator + ribuan.join(".");
+        }
+
+        rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+        return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
+    }
+    // console.log(harga_produk);
+    $("#total-harga-keranjang").text(formatRupiah(harga_produk, "Rp."));
+    // ppn
+    var ppn = harga_produk * 0.1;
+    $("#ppn").text(formatRupiah(ppn, "Rp."));
+    var total = harga_produk + ppn;
+    $("#total").text(formatRupiah(total, "Rp."));
 });
+
+// del from keranjang
+function deleteItem(value) {
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: "btn btn-success",
+            cancelButton: "btn btn-danger",
+        },
+        buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+        .fire({
+            title: "Anda Yakin?",
+            text: "Item yang adana Hapus tidak bisa di restore!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Ya, Saya Yakin",
+            cancelButtonText: "Tidak, Batalkan!",
+            reverseButtons: true,
+        })
+        .then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "/keranjang-delete" + "/" + value,
+                    type: "get",
+                    success: function () {
+                        Swal.fire(
+                            "Deleted!",
+                            "Your file has been deleted.",
+                            "success"
+                        );
+                        setTimeout(function () {
+                            location.reload(); //Refresh page
+                        }, 500);
+                    },
+                });
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire("Batal");
+            }
+        });
+}
