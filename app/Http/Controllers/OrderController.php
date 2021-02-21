@@ -10,6 +10,7 @@ use App\Navigasi;
 use App\ParentNavigasi;
 use App\Produk;
 use App\TransaksiOrder;
+use App\MetodePengiriman;
 
 class OrderController extends Controller
 {
@@ -58,13 +59,22 @@ class OrderController extends Controller
         $companyInfo = CompanyInfo::get()->first();
         $navigasi = Navigasi::with('parent')->get();
         $parentNav = ParentNavigasi::with('navigasi')->get()->all();
+        $pengiriman = MetodePengiriman::get()->all();
         return view('frontend.order.transaksi-order', [
         'routeName' => $routeName,
             'companyInfo' => $companyInfo,
             'parentNav' => $parentNav,
             'navigasi' => $navigasi,
-            'data' => $data
+            'data' => $data,
+            'pengiriman' => $pengiriman
        ]);
+    }
+
+    public function getPengiriman($id=null)
+    {
+        $id_metode_pengiriman = $id;
+        $pengiriman = MetodePengiriman::find($id_metode_pengiriman);
+        return response()->json($pengiriman);
     }
 
     public function deleteItemKeranjang($id)

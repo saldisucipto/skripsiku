@@ -38,6 +38,22 @@ $(document).ready(function () {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
     });
+    function formatRupiah(harga_produk, prefix) {
+        var number_string = harga_produk.toString(),
+            split = number_string.split(","),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        // tambahkan titik jika yang di input sudah menjadi harga_produk ribuan
+        if (ribuan) {
+            separator = sisa ? "." : "";
+            rupiah += separator + ribuan.join(".");
+        }
+
+        rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+        return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
+    }
     // tambah kerjanjang function
     $("#tambahKeranjang").click(function () {
         let id_produk = $("#id_produk").val();
@@ -50,7 +66,7 @@ $(document).ready(function () {
         if (id_customer != null) {
             $.ajax({
                 url: "/tambahkeranjang",
-                type: "POST",
+                type: "get",
                 data: {
                     _token: _token,
                     id_produk: id_produk,
@@ -90,34 +106,33 @@ $(document).ready(function () {
         }
     });
 
-    // total order
-    var harga_produk = 0;
-    $(".harga-produk").each(function () {
-        harga_produk += parseFloat($(this).text());
+    $("#pengiriman").change(function () {
+        var id = $("#pengiriman").val();
+        $.ajax({
+            url: "/getPengiriman" + "/" + id,
+            type: "get",
+            success: function (result) {
+                var harga_pengiriman = result.harga_pengiriman;
+                $("#hrg-pengiriman").text(
+                    formatRupiah(harga_pengiriman, "Rp. ")
+                );
+                // total order
+                var harga_produk = 0;
+                $(".harga-produk").each(function () {
+                    harga_produk += parseFloat($(this).text());
+                });
+                // ppn
+                var ppn = (harga_produk + harga_pengiriman) * 0.1;
+                $("#ppn").text(formatRupiah(ppn, "Rp."));
+                var total = harga_produk;
+                $("#total-harga-keranjang").text(formatRupiah(total, "Rp."));
+                // console.log(harga_produk);
+                var total_banget = total + harga_pengiriman + ppn;
+                $("#total").text(formatRupiah(total_banget, "Rp."));
+                // pengiriman
+            },
+        });
     });
-    function formatRupiah(harga_produk, prefix) {
-        var number_string = harga_produk.toString(),
-            split = number_string.split(","),
-            sisa = split[0].length % 3,
-            rupiah = split[0].substr(0, sisa),
-            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-        // tambahkan titik jika yang di input sudah menjadi harga_produk ribuan
-        if (ribuan) {
-            separator = sisa ? "." : "";
-            rupiah += separator + ribuan.join(".");
-        }
-
-        rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
-        return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
-    }
-    // console.log(harga_produk);
-    $("#total-harga-keranjang").text(formatRupiah(harga_produk, "Rp."));
-    // ppn
-    var ppn = harga_produk * 0.1;
-    $("#ppn").text(formatRupiah(ppn, "Rp."));
-    var total = harga_produk + ppn;
-    $("#total").text(formatRupiah(total, "Rp."));
 });
 
 // del from keranjang

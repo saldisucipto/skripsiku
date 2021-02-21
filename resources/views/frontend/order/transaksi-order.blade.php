@@ -75,6 +75,29 @@
                 </div>
 
                 {{-- End Product Info --}}
+                {{-- Product Info --}}
+                <div class="col-sm-4">
+                    <div class="left-sidebar">
+                        <h2>Pilih Pengiriman</h2>
+                        <div class="panel-group category-products" id="accordian">
+                            <div class="product-info" style="margin: 5px">
+                                <p>
+                                <h4><b>Pilih Pengiriman:</b></h4>
+                                </p>
+                                <select name="id_pengiriman" id="pengiriman" class="form-control">
+                                    <option aria-readonly="true">Pilih Pengiriman</option>
+                                    @foreach ($pengiriman as $item)
+                                        <option value="{{ $item->id_metode_pengiriman }}">{{ $item->nama_pengiriman }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <!--/shipping-->
+
+                    </div>
+                </div>
+                {{-- End Product Info --}}
 
                 {{-- Product Info --}}
                 <div class="col-sm-4">
@@ -101,6 +124,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
+                                        <h4>Biaya Pengiriman</h4>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4><b id="hrg-pengiriman"></b></h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
                                         <h4>PPN (10%)</h4>
                                     </div>
                                     <div class="col-sm-6">
@@ -118,10 +149,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a href="#" class="btn btn-block btn-primary">Make Order</a>
+                                </div>
+                            </div>
                         </div>
                         <!--/shipping-->
-
                     </div>
+
                 </div>
                 {{-- End Product Info --}}
             </div>
