@@ -49,7 +49,7 @@
                                                             <a role="button" class="text-danger"
                                                                 onclick="deleteItem({{ $item->id_trksi_order }})"><i
                                                                     class="fa fa-trash-o fa-2x"></i>
-                                                                Hapus Dari Order</a>
+                                                                Hapus Dari Keranjang</a>
 
                                                         </div>
                                                     </div>

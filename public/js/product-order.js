@@ -1,3 +1,5 @@
+// const { data } = require("jquery");
+
 // Product Order
 $(document).ready(function () {
     // getCount Keranjang
@@ -12,9 +14,6 @@ $(document).ready(function () {
             },
         });
     }
-    /* Fungsi formatRupiah */
-    // $("#harga-barang");
-    // alert(qty_order);
     $("#qty-order").change(function () {
         let harga_barang = $("#hargabarang").text();
         let qty_order = $("#qty-order").val();
@@ -38,6 +37,27 @@ $(document).ready(function () {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
     });
+    // countOrders
+    let count_orders = $("#orderan").text();
+    // alert(count_orders);
+    $.ajax({
+        url: "/order-count/" + id_customer,
+        type: "get",
+        dataType: "json",
+        success: function (response) {
+            $("#orderan").text(response);
+        },
+    });
+    // get count Invoice
+    $.ajax({
+        url: "/checkout-order/" + id_customer,
+        type: "get",
+        dataType: "json",
+        success: function (response) {
+            $("#checkout").text(response);
+        },
+    });
+
     function formatRupiah(harga_produk, prefix) {
         var number_string = harga_produk.toString(),
             split = number_string.split(","),
@@ -79,7 +99,7 @@ $(document).ready(function () {
                             showConfirmButton: false,
                             timer: 1500,
                         }).then(function () {
-                            window.location.href = "/";
+                            window.location.href = "/keranjang/" + id_customer;
                         });
                     } else {
                         Swal.fire({
@@ -169,7 +189,7 @@ $(document).ready(function () {
                         showConfirmButton: false,
                         timer: 5000,
                     }).then(function () {
-                        window.location.href = "/";
+                        window.location.href = "/order/" + id_customer;
                     });
                 } else {
                     Swal.fire({
@@ -182,6 +202,19 @@ $(document).ready(function () {
                 }
             },
         });
+    });
+
+    // total amount
+    var total_amount = 0;
+    $(".total-orders").each(function () {
+        total_amount += parseFloat($(this).text());
+    });
+    $("#total-amount").text(formatRupiah(total_amount, "Rp. "));
+
+    $("#id_metode_pembayaran").change(function () {
+        var id_metode_pembayaran = $("#id_metode_pembayaran")
+            .find(":selected")
+            .val();
     });
 });
 
@@ -228,3 +261,71 @@ function deleteItem(value) {
             }
         });
 }
+
+function GetTodayDate() {
+    var tdate = new Date();
+    var dd = tdate.getDate(); //yields day
+    var MM = tdate.getMonth(); //yields month
+    var yyyy = tdate.getFullYear(); //yields year
+    var currentDate = yyyy + "-" + (MM + 1) + "-" + dd;
+    return currentDate;
+}
+
+// console.log(id);
+// create Invoice
+function getNewVal(item) {
+    let id = item.value;
+    document.getElementById("id_metode_pembayaran").value = id;
+}
+$(document).ready(function () {
+    $("#id_metode_pembayaran").change(function () {
+        let id_metode_pembayaran = $(this).val();
+        let id_customer = $("#id_customer1").text().replace(/\s+/g, "");
+        let total_amount = $("#total-amount").text().replace(/.\s+/g, "");
+        let tanggal = GetTodayDate();
+        let _token = $('meta[name="csrf-token"]').attr("content");
+
+        // var data = [id_customer, id_metode_pembayaran, total_amount, tanggal];
+
+        $("#button-cekout").click(function () {
+            // // alert(data);
+            // console.log(data);
+            //send infromation
+            console.log("Send Data To The Server");
+            $.ajax({
+                url: "/invoice/" + id_customer,
+                type: "POST",
+                data: {
+                    _token: _token,
+                    id_customer: id_customer,
+                    id_metode_pembayaran: id_metode_pembayaran,
+                    total_amount: total_amount,
+                    tanggal: tanggal,
+                },
+                success: function (result) {
+                    // console.log(result);
+                    if (result) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title:
+                                "Invoice Sudah Berhasil Dibuat, Kami akan mengkonfirmasi Pembayaran Anda",
+                            showConfirmButton: false,
+                            timer: 5000,
+                        }).then(function () {
+                            window.location.href = "/";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Sepertinya ada yang salah!",
+                            showConfirmButton: false,
+                            timer: 900,
+                        });
+                    }
+                },
+            });
+        });
+    });
+});

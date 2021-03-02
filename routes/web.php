@@ -18,6 +18,7 @@ Route::match(['get', 'post'], '/register-customers', 'CustomerController@index')
 // Route::post('/login', 'CustomerController@login')
 Route::get('/produk/{slug}', 'StaticController@produkShow');
 
+
 // order
 Route::match(['get', 'post'], '/orders', 'OrderController@trksiOrder')->name('transaksi.order');
 Route::get('/getPengiriman/{id}', 'OrderController@getPengiriman');
@@ -29,7 +30,16 @@ Route::get('/jumlah-keranjang/{id_customers}', 'StaticController@getCountKeranja
 Route::get('/keranjang/{id_customer}', 'OrderController@keranjang');
 // make order
 Route::post('/make-order', 'OrderController@makeOrder');
+// get count order
+Route::get('/order-count/{id_customer}', 'OrderController@getCountOrder')->name('getCountOrder');
+Route::get('/order/{id_customer}', 'OrderController@OrderShow');
+// make invoice
+Route::post('/invoice/{id_customer}', 'OrderController@makeInvoice');
+// get count checkout
+Route::get('/checkout-order/{id_customer}', 'OrderController@countInv');
+Route::get('/checkout/{id_customer}', 'OrderController@checkout');
 // end order
+
 
 
 Route::prefix('customer')->group(function () {
@@ -77,4 +87,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::match(['get', 'post'], '/metode-pengiriman', 'MetodePengirimanController@index');
     Route::match(['get', 'put'], '/metode-pengiriman/edit/{id}', 'MetodePengirimanController@update');
+
+    // acount pembayaran
+    Route::match(['get', 'post'], '/account-number', 'MetodePembayaranController@index');
+    Route::match(['get', 'put'], '/metode-pembayaran/edit/{id}', 'MetodePembayaranController@update');
+
+    // orders Backend
+    Route::match(['get', 'post'], '/backend-orders', 'OrderController@backendOrders');
 });

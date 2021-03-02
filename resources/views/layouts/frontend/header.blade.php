@@ -96,16 +96,20 @@
                                 @if (count($item->navigasi) > 0)
                                     <li class="dropdown"><a href="{{ $item->link }}" class="
                                          @if ($routeName==$item->link) active @endif">{{ $item->title }} <span style="background-color: red"
-                                                class="badge rounded-pill jumlah-keranjang"></span><i
-                                                class="fa fa-angle-down"></i></a>
+                                                class="badge rounded-pill">*</span><i class="fa fa-angle-down"></i></a>
                                         <ul role="menu" class="sub-menu">
                                             @foreach ($item->navigasi as $submenu)
-                                                <li><a href=" @if (Auth::guard('customer')->check()) {{ $submenu->link . '/' . Auth::guard('customer')->user()->id_customers }}
-                                                    @else {{ $submenu->link }} @endif
+                                                <li><a href=" @if (Auth::guard('customer')->check()) {{ $submenu->link . '/' . Auth::guard('customer')->user()->id_customers }} @endif
                                                         ">{{ $submenu->title }}
                                                         @if ($submenu->title === 'Keranjang')
-                                                            <span style="background-color: red"
+                                                            <span id="bedge-keranjang" style="background-color: red"
                                                                 class="badge rounded-pill jumlah-keranjang"></span>
+                                                        @elseif($submenu->title === 'Order')
+                                                            <span id="orderan" style="background-color: red"
+                                                                class="badge rounded-pill"></span>
+                                                        @elseif($submenu->title === 'Checkout')
+                                                            <span id="checkout" style="background-color: red"
+                                                                class="badge rounded-pill"></span>
                                                         @endif
                                                     </a></li>
                                             @endforeach

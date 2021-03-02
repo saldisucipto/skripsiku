@@ -17,4 +17,10 @@ class TransaksiOrder extends Model
     {
         return $this->hasMany('App\Produk', 'id_produk', 'id_produk');
     }
+
+    // deklare raltion with order
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

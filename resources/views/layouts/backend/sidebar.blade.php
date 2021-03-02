@@ -17,6 +17,8 @@
                 </li> --}}
                 <li><a href="/home-customers" class=" @if ($routeName==='home-customers' ) active @endif"><i class="lnr lnr-users"></i> <span>Users
                             Customers</span></a>
+                <li><a href="/account-number" class=" @if ($routeName==='account-number' ) active @endif"><i class="lnr lnr-layers"></i> <span>Account
+                            Pembayaran</span></a>
 
                 <li>
                     <a href="#product" data-toggle="collapse" class="@if ($routeName==='product'
@@ -37,7 +39,7 @@
                         ) active @endif"><i class="fa fa-car"></i>
                         <span>Metode Pengiriman</span></a></li>
                 </li>
-                <li><a href="/slider-banner" class=" @if ($routeName==='slider-banner' ) active @endif"><i class="lnr lnr-cart"></i> <span>Order</span></a>
+                <li><a href="/backend-orders" class=" @if ($routeName==='backend-orders' ) active @endif"><i class="lnr lnr-cart"></i> <span>Order</span></a>
                 </li>
                 <li><a href="/slider-banner" class=" @if ($routeName==='slider-banner' ) active @endif"><i class="fa fa-money"></i>
                         <span>Pembayaran</span></a></li>
