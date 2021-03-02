@@ -11,4 +11,10 @@ class MetodePengiriman extends Model
 
     // primaryKey
     protected $primaryKey = 'id_metode_pengiriman';
+
+    // deklare with order
+    public function order()
+    {
+        return $this->hasMany('App/Customer', 'id_customer');
+    }
 }
