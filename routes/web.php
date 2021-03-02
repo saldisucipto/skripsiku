@@ -38,6 +38,7 @@ Route::post('/invoice/{id_customer}', 'OrderController@makeInvoice');
 // get count checkout
 Route::get('/checkout-order/{id_customer}', 'OrderController@countInv');
 Route::get('/checkout/{id_customer}', 'OrderController@checkout');
+Route::get('/invoice/{id_invoice}', 'StaticController@invoice');
 // end order
 
 
@@ -94,4 +95,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     // orders Backend
     Route::match(['get', 'post'], '/backend-orders', 'OrderController@backendOrders');
+
+    // pembayaran
+    Route::match(['get', 'post'], '/pembayaran', 'OrderController@pembayaran');
+    Route::put('/verifikasi/{id_invoice}', 'OrderController@verifikasi');
 });

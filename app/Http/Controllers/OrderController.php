@@ -187,7 +187,7 @@ class OrderController extends Controller
         $companyInfo = CompanyInfo::get()->first();
         $navigasi = Navigasi::with('parent')->get();
         $parentNav = ParentNavigasi::with('navigasi')->get()->all();
-        $data = Invoice::with('pembayaran')->where('id_customer', $id_customer)->where('terverifikasi', 0)->get();
+        $data = Invoice::with('pembayaran')->where('id_customer', $id_customer)->get();
         // dd($data);
         // die;
         return view('frontend.checkout.index', [
@@ -197,5 +197,41 @@ class OrderController extends Controller
             'navigasi' => $navigasi,
             'data' => $data
         ]);
+    }
+
+    public function pembayaran(Request $request, $id_invoice = null)
+    {
+        if ($request->isMethod('PUT')) {
+            $data = $request->all();
+            $dataUpdate = Invoice::find($id_invoice);
+            $dataUpdate->id_user = $data['id_user'];
+            $dataUpdate->verify_by = $dataUpdate['nama_user'];
+            $dataUpdate->tanggal_verifikasi = date(Y-m-d);
+            $dataUpdate->save();
+            return response()->json("done");
+        }
+        $routeName = Route::getCurrentRoute()->uri();
+        $companyInfo = CompanyInfo::get()->first();
+        $navigasi = Navigasi::with('parent')->get();
+        $parentNav = ParentNavigasi::with('navigasi')->get()->all();
+        $data = Invoice::with('pembayaran')->get();
+        return view('backend.pembayaran.listInvoice', [
+            'routeName' => $routeName,
+            'companyInfo' => $companyInfo,
+            'parentNav' => $parentNav,
+            'navigasi' => $navigasi,
+            'data' => $data
+        ]);
+    }
+    public function verifikasi(Request $request, $id_invoice = null)
+    {
+        $data = $request->all();
+        $dataUpdate = Invoice::find($id_invoice);
+        $dataUpdate->id_user = $data['id_user'];
+        $dataUpdate->verify_by = $data['nama_user'];
+        $dataUpdate->terverifikasi = 1;
+        $dataUpdate->tanggal_verifikasi = date('Y-m-d');
+        $dataUpdate->save();
+        return response()->json("done");
     }
 }

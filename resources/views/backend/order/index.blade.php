@@ -218,48 +218,5 @@
         {{-- End Footer --}}
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="modalCreateNew" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="createModalTitle"><strong>CREATE NEW SLIDER BANNER</strong></h5>
-                </div>
-                <div class="modal-body">
-                    <form action="/slider-banner" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Title Slider</label>
-                            <div class="col-sm-8">
-                                <input type="text" name="title_slider" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Link Slider</label>
-                            <div class="col-sm-8">
-                                <input type="text" name="link_slider" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Decription Slider</label>
-                            <div class="col-sm-8">
-                                <textarea name="description_slider" class="form-control" cols="30" rows="5"
-                                    required></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Images Slider</label>
-                            <div class="col-sm-8">
-                                <input type="file" class="form-control" name="images_slider" required id="images_slider">
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Create New</button>
-                </div>
-                </form>
-
-            </div>
-        </div>
     </div>
 @endsection

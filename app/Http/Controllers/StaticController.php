@@ -11,6 +11,8 @@ use App\ParentNavigasi;
 use App\KatProduk;
 use App\Produk;
 use App\TransaksiOrder;
+use App\Order;
+use App\Invoice;
 
 class StaticController extends Controller
 {
@@ -64,4 +66,18 @@ class StaticController extends Controller
     }
 
     // function checkout
+    public function invoice($id_invoice)
+    {
+        //
+        $invoice = Invoice::with('customer')->find($id_invoice);
+        $data = Order::with('transaksi')->where('id_invoice', $id_invoice)->get();
+        $companyInfo = CompanyInfo::get()->first();
+        // dd($data);
+        // die;
+        return view('invoice', [
+            'companyInfo' => $companyInfo,
+            'data' => $data,
+            'invoice' => $invoice
+        ]);
+    }
 }

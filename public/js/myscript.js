@@ -351,3 +351,60 @@ $(window).resize(function () {
         setModalMaxHeight($(".modal.in"));
     }
 });
+$.ajaxSetup({
+    headers: {
+        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    },
+});
+function verifikasiPembayaran(id_invoice) {
+    let _token = $('meta[name="csrf-token"]').attr("content");
+    let id_user = $("#id_user").text();
+    let nama_user = $("#nama_user").text();
+    // console.log(id_invoice, id_user, nama_user);
+    // alert(id_user);
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: "btn btn-success",
+            cancelButton: "btn btn-danger",
+        },
+        buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+        .fire({
+            title: "Yakin akan Memverifikasi Pembayaran ini?",
+            text: "Cek kembali pembayaran yang sudah dilakukan!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, Confirm it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: true,
+        })
+        .then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "/verifikasi/" + id_invoice,
+                    type: "PUT",
+                    data: {
+                        _token: _token,
+                        id_user: id_user,
+                        nama_user: nama_user,
+                    },
+                    success: function () {
+                        Swal.fire(
+                            "Terkonfrimasi!",
+                            "Pembayaran Terkonfirmasi.",
+                            "success"
+                        );
+                        setTimeout(function () {
+                            location.reload(); //Refresh page
+                        }, 500);
+                    },
+                });
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire("Cancelled");
+            }
+        });
+}

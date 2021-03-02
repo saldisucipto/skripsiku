@@ -29,4 +29,10 @@ class Order extends Model
     {
         return $this->hasMany(TransaksiOrder::class, 'id_order');
     }
+
+    // deklare
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class, 'id_invoice');
+    }
 }

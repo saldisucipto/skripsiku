@@ -41,7 +41,7 @@
                 </li>
                 <li><a href="/backend-orders" class=" @if ($routeName==='backend-orders' ) active @endif"><i class="lnr lnr-cart"></i> <span>Order</span></a>
                 </li>
-                <li><a href="/slider-banner" class=" @if ($routeName==='slider-banner' ) active @endif"><i class="fa fa-money"></i>
+                <li><a href="/pembayaran" class=" @if ($routeName==='pembayaran' ) active @endif"><i class="fa fa-money"></i>
                         <span>Pembayaran</span></a></li>
                 </li>
 
