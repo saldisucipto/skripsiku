@@ -14,6 +14,7 @@ use App\MetodePengiriman;
 use App\Order;
 use App\MetodePembayaran;
 use App\Invoice;
+use App\TransaksiPengiriman;
 use DB;
 
 class OrderController extends Controller
@@ -233,5 +234,48 @@ class OrderController extends Controller
         $dataUpdate->tanggal_verifikasi = date('Y-m-d');
         $dataUpdate->save();
         return response()->json("done");
+    }
+
+    public function prosesPengiriman()
+    {
+        $routeName = Route::getCurrentRoute()->uri();
+        $companyInfo = CompanyInfo::get()->first();
+        $navigasi = Navigasi::with('parent')->get();
+        $parentNav = ParentNavigasi::with('navigasi')->get()->all();
+        $data = Invoice::with('pembayaran')->get();
+        return view('backend.pengiriman.list-pengiriman', [
+            'routeName' => $routeName,
+            'companyInfo' => $companyInfo,
+            'parentNav' => $parentNav,
+            'navigasi' => $navigasi,
+            'data' => $data,
+        ]);
+    }
+
+    public function createPengiriman(Request $create, $id_invoice=null)
+    {
+        if ($create->isMethod('POST')) {
+            $data = $create->all();
+
+            $createPengiriman = new TransaksiPengiriman;
+            $createPengiriman->id_user = $data['id_user'];
+            $createPengiriman->id_invoice = $data['id_invoice'];
+            $createPengiriman->id_customer = $data['id_customer'];
+            $createPengiriman->catatan_pengiriman = $data['catatan_pengiriman'];
+            $createPengiriman->save();
+            return redirect()->back()->with('pesan_sukses', 'Berhasil Membuat Pengiriman');
+        }
+        $routeName = Route::getCurrentRoute()->uri();
+        $companyInfo = CompanyInfo::get()->first();
+        $navigasi = Navigasi::with('parent')->get();
+        $parentNav = ParentNavigasi::with('navigasi')->get()->all();
+        $data = Invoice::find($id_invoice);
+        return view('backend.pengiriman.create', [
+            'routeName' => $routeName,
+            'companyInfo' => $companyInfo,
+            'parentNav' => $parentNav,
+            'navigasi' => $navigasi,
+            'data' => $data,
+        ]);
     }
 }

@@ -27,16 +27,8 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <h3 class="panel-tile">Metode Pengiriman Controller</h3>
-                                        <p class="panel-subtitle">Master Metode Pengiriman</p>
-                                        <p> <a href="#" class="btn btn-sm btn-primary" data-toggle="modal"
-                                                data-target="#createPengirimanBaru"> <i class="fa fa-plus"></i> Tambah
-                                                Pengiriman
-                                            </a> || <a href="/proses-pengiriman/" class="btn btn-sm btn-info"> <i
-                                                    class="fa fa-car"></i>
-                                                Proses
-                                                Pengiriman Barang
-                                            </a></p>
+                                        <h3 class="panel-tile">Pengiriman Controller</h3>
+                                        <p class="panel-subtitle">Atur Pengiriman Barang By Invoice</p>
                                     </div>
                                 </div>
                             </div>
@@ -55,27 +47,32 @@
                                             <table class="table table-striped table-bordered data">
                                                 <thead>
                                                     <tr>
-                                                        <th>Nama Pengiriman</th>
-                                                        <th>Jarak Pengiriman</th>
-                                                        <th>Harga Pengiriman</th>
+                                                        <th>Nomor Invoice</th>
+                                                        <th>Metode Pembayaran</th>
+                                                        <th>Nama Customer</th>
+                                                        <th>Total</th>
+                                                        <th>Verify By</th>
+                                                        <th>Tanggal Diverifikasi</th>
                                                         <th class="text-center">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($data as $item)
                                                         <tr>
-                                                            <td>{{ $item->nama_pengiriman }}</td>
-                                                            <td>{{ $item->jarak_pengiriman }}</td>
-                                                            <td>{{ rupiah($item->harga_pengiriman) }}</td>
-                                                            <td class="text-center"><a href="#"
-                                                                    class="btn btn-xs btn-warning" data-toggle="modal"
-                                                                    data-target="#editPengiriman{{ $item->id_metode_pengiriman }}"><i
-                                                                        class="fa fa-eye"></i>
-                                                                    Edit</a>|<a href="#"
-                                                                    onclick="deletePengiriman({{ $item->id_metode_pengiriman }})"
-                                                                    class="btn btn-xs btn-danger"><i
-                                                                        class="fa fa-trash"></i>
-                                                                    Delete</a></td>
+                                                            <td>{{ $item->id_invoice }}</td>
+                                                            <td>{{ $item->pembayaran->nama_metode }} ||
+                                                                {{ $item->pembayaran->account_number }}</td>
+                                                            <td>{{ $item->customer->nama_lengkap }}</td>
+                                                            <td>{{ rupiah($item->jumlah_pembayaran) }}</td>
+                                                            <td>{{ $item->verify_by }}</td>
+                                                            <td>{{ $item->tanggal }}</td>
+
+
+
+                                                            <td class="text-center"><a
+                                                                    href="/proses-pengiriman/{{ $item->id_invoice }}"
+                                                                    class="btn btn-xs btn-primary"><i class="fa fa-eye"></i>
+                                                                    Proses Pengiriman</a></td>
                                                         </tr>
                                                         {{-- Edit modal Pengiriman --}}
                                                         <div class="modal fade"

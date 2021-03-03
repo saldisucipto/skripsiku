@@ -99,4 +99,6 @@ Route::group(['middleware' => ['auth']], function () {
     // pembayaran
     Route::match(['get', 'post'], '/pembayaran', 'OrderController@pembayaran');
     Route::put('/verifikasi/{id_invoice}', 'OrderController@verifikasi');
+    Route::get('/proses-pengiriman/', 'OrderController@prosesPengiriman');
+    Route::match(['get', 'post'], '/proses-pengiriman/{id_invoice}','OrderController@createPengiriman' );
 });
