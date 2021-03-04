@@ -45,7 +45,7 @@
                         <span>Pembayaran</span></a></li>
                 </li>
 
-                <li><a href="/slider-banner" class=" @if ($routeName==='slider-banner' ) active @endif"><i class="lnr lnr-chart-bars"></i>
+                <li><a href="/laporan" class=" @if ($routeName==='laporan' ) active @endif"><i class="lnr lnr-chart-bars"></i>
                         <span>Laporan</span></a>
                 </li>
                 </li>

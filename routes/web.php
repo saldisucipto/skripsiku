@@ -100,5 +100,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::match(['get', 'post'], '/pembayaran', 'OrderController@pembayaran');
     Route::put('/verifikasi/{id_invoice}', 'OrderController@verifikasi');
     Route::get('/proses-pengiriman/', 'OrderController@prosesPengiriman');
-    Route::match(['get', 'post'], '/proses-pengiriman/{id_invoice}','OrderController@createPengiriman' );
+    Route::match(['get', 'post'], '/proses-pengiriman/{id_invoice}', 'OrderController@createPengiriman');
+    Route::get('/laporan', 'LaporanController@index');
+
+    Route::get('/laporan/customer', 'LaporanController@customer');
+    Route::get('/laporan/produk', 'LaporanController@produk');
+    Route::get('/laporan/pembayaran', 'LaporanController@pembayaran');
+    Route::get('/laporan/order', 'LaporanController@order');
+    Route::get('/laporan/pengiriman', 'LaporanController@pengiriman');
 });
